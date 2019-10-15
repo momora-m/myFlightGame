@@ -1,0 +1,44 @@
+fileFormatVersion: 2
+guid: f627d3e349b7ca74ba2d6bd8b13a9e0f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Open Sans
+  fontNames:
+  - Open Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9c858b8063fb5e54a838d8f895641fed, type: 3}
+  - {fileID: 12800000, guid: b51a3e520f9164da198dc59c8acfccd6, type: 3}
+  - {fileID: 12800000, guid: 04a842e316b6f44bf8da702de26a8ed6, type: 3}
+  - {fileID: 12800000, guid: ce641c24d4ad537409270fe427734584, type: 3}
+  - {fileID: 12800000, guid: 2df5c945cccee0648b0de3df6e851ebc, type: 3}
+  - {fileID: 12800000, guid: a7555d56552660f43a51c4a703a2747e, type: 3}
+  - {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+  - {fileID: 12800000, guid: 9e222fc663ecae447bc6151a5c610d1b, type: 3}
+  - {fileID: 12800000, guid: ed9260775b5e8204197dc6f76eb83a95, type: 3}
+  - {fileID: 12800000, guid: 0e4735e8ac8e64d4b8cae06c3bc7da53, type: 3}
+  - {fileID: 12800000, guid: 30e394f8778bf094f82f7ce822ba3741, type: 3}
+  - {fileID: 12800000, guid: b1554479d4613ec4da15dc24ab0e76af, type: 3}
+  - {fileID: 12800000, guid: 0b2204e9efdfeb548817452cfff4c848, type: 3}
+  - {fileID: 12800000, guid: 9951130a0edd7504d8532bf5f5c3327e, type: 3}
+  - {fileID: 12800000, guid: 01cd679a1b9ee48bf9c546f6ce2cb97e, type: 3}
+  - {fileID: 12800000, guid: de2aac5b341b82a4e8d0548761f688fb, type: 3}
+  - {fileID: 12800000, guid: 395401dbeb6e1b648a75f0aa170a165f, type: 3}
+  - {fileID: 12800000, guid: 82cb4d5ce5965f24490e0affa7921fe1, type: 3}
+  - {fileID: 12800000, guid: ee8fc3fc85eaf654fa3447aab959424b, type: 3}
+  - {fileID: 12800000, guid: bf04b85d2c7769b40a0510f5bc568283, type: 3}
+  - {fileID: 12800000, guid: 67fe52adc9ce6ea4b812ab7ee2c5ad79, type: 3}
+  - {fileID: 12800000, guid: 39f6cb0e153127c49a7d2c1fd2add586, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

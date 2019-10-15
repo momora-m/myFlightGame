@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: a8b0f0808c314f84a92f5c0091555fe1
+labels:
+- Ship
+- Space
+- Airplane
+- Fly
+- Vehicle
+- Input
+- Controls
+- Controller
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

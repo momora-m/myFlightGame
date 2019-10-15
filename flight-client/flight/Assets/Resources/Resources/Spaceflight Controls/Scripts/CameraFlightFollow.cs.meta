@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bfa78e768046fe6498a4b1f9d6e592e4
+labels:
+- Camera
+- Ship
+- Space
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

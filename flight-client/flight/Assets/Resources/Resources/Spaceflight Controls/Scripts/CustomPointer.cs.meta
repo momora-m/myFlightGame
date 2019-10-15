@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0fecb7061797a184daa1fbaadc672f7a
+labels:
+- Controller
+- Space
+- Ship
+- Airplane
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
