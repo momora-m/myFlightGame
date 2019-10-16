@@ -22,7 +22,6 @@ public class HitEnemy : MonoBehaviour
         {
             FindObjectOfType<Score>().AddPoint(10);
 
-
             Destroy(this.gameObject);
         }
     }*/

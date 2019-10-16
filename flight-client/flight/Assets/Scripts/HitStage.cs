@@ -3,45 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HitStage : MonoBehaviour
+namespace Fighter// 戦闘機周りはこの名前空間で統一
 {
-    public GameObject explode;
-
-    private int flg = 0;
-    // Start is called before the first frame update
-    void Start()
+    public class HitStage : MonoBehaviour
     {
-        
-    }
+        public GameObject explode;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        private FighterController m_Aeroplane;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Stage" || collision.gameObject.tag == "Enemy")
+        private int flg = 0;
+        // Start is called before the first frame update
+        void Start()
         {
-            Instantiate(explode, this.transform.position, Quaternion.identity);
-            Debug.Log("hit");
-            StartCoroutine(DelayMethod());
+            // 戦闘機モデルにアタッチされたFighterControllerを取得する
+            m_Aeroplane = GetComponent<FighterController>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.tag == "Stage" || collision.gameObject.tag == "Enemy")
+            {
+                m_Aeroplane.Immobilize();
+                Instantiate(explode, this.transform.position, Quaternion.identity);
+                Debug.Log("hit");
+                StartCoroutine(DelayMethod());
+
+            }
+        }
+
+
+        IEnumerator DelayMethod()
+        {
+            Debug.Log("coroutine");
+            yield return new WaitForSeconds(1.0f);
+            ChangeScene();
+        }
+
+        void ChangeScene()
+        {
+            Destroy(this.gameObject);
+            SceneManager.LoadScene("gameover");
 
         }
-    }
-
-
-    IEnumerator DelayMethod()
-    {
-        Debug.Log("coroutine");
-        yield return new WaitForSeconds(1.0f);
-        ChangeScene();
-    }
-
-    void ChangeScene()
-    {
-        Destroy(this.gameObject);
-        SceneManager.LoadScene("gameover");
-
     }
 }

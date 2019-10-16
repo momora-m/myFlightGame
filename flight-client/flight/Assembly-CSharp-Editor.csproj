@@ -62,35 +62,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Resources\Controller Tester\Scripts\Editor\TestGamepadEditor.cs" />
-    <Compile Include="Assets\Resources\Resources\Controller Tester\Scripts\Editor\TestGamepadEditor.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Ramps\Editor\RampAssetEditor.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Editor\FlightSysEditor.cs" />
     <Compile Include="Assets\Resources\Shared\Ramps\Editor\RampAssetEditor.cs" />
     <Compile Include="Assets\Resources\Spaceflight Controls\Editor\FlightSysEditor.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Reference Include="Unity.ProGrids">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProGrids.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files (x86)/2018.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
