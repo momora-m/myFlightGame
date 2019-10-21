@@ -66,28 +66,14 @@
     <Compile Include="Assets\Resources\Clean Title Transitions\Scripts\CTTDemoManager.cs" />
     <Compile Include="Assets\Resources\Controller Tester\Scripts\DetectUnknownControllerMappings.cs" />
     <Compile Include="Assets\Resources\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
-    <Compile Include="Assets\Resources\Resources\Clean Title Transitions\Scripts\CTTDemoManager.cs" />
-    <Compile Include="Assets\Resources\Resources\Controller Tester\Scripts\DetectUnknownControllerMappings.cs" />
-    <Compile Include="Assets\Resources\Resources\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Menu\Scripts\PauseMenu.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Scripts\CameraSwitch.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Scripts\LevelReset.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Scripts\ParticleSceneControls.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
-    <Compile Include="Assets\Resources\Resources\SampleScenes\Scripts\SlowMoButton.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Ramps\Runtime\RampAsset.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Scripts\AdjustTimeScale.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Scripts\ProximityActivate.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Scripts\SimpleCameraController.cs" />
-    <Compile Include="Assets\Resources\Resources\Shared\Scripts\SimpleCharacterMotor.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\bullet.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\CameraFlightFollow.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\CustomPointer.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\DemoUI.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\PlayerFlightControl.cs" />
-    <Compile Include="Assets\Resources\Resources\Spaceflight Controls\Scripts\PSDestroy.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Menu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Scripts\CameraSwitch.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Scripts\LevelReset.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Scripts\ParticleSceneControls.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
+    <Compile Include="Assets\Resources\SampleScenes\Scripts\SlowMoButton.cs" />
     <Compile Include="Assets\Resources\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\Resources\Shared\Scripts\AdjustTimeScale.cs" />
     <Compile Include="Assets\Resources\Shared\Scripts\ProximityActivate.cs" />
@@ -101,8 +87,12 @@
     <Compile Include="Assets\Resources\Spaceflight Controls\Scripts\PSDestroy.cs" />
     <Compile Include="Assets\Scripts\chasecamera.cs" />
     <Compile Include="Assets\Scripts\CountDownTimer.cs" />
-    <Compile Include="Assets\Scripts\FighterStatus.cs" />
-    <Compile Include="Assets\Scripts\FireShot.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterAnimatorcontroller.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterAudio.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterController.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterInputPS4.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterStatus.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FireShot.cs" />
     <Compile Include="Assets\Scripts\GameSystem.cs" />
     <Compile Include="Assets\Scripts\Highscore.cs" />
     <Compile Include="Assets\Scripts\HitBullet.cs" />
@@ -116,91 +106,83 @@
     <Compile Include="Assets\Scripts\LockonSystem.cs" />
     <Compile Include="Assets\Scripts\MoveIcon.cs" />
     <Compile Include="Assets\Scripts\MoveTitle.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\RestartGame.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\StartGame.cs" />
     <Compile Include="Assets\test.cs" />
     <Compile Include="Assets\testflight.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <None Include="Assets\Resources\Resources\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\Resources\Resources\Ultra Skybox Fog\Textures\Readme.txt" />
+    <None Include="Assets\Resources\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\Resources\Ultra Skybox Fog\Textures\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Ultra Skybox Fog\Shaders\UltraSkyboxFog.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\Resources\Resources\EffectExamples\Magic Effects\Shaders\Ice.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Resources\EffectExamples\Magic Effects\Shaders\Ice.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\Resources\Resources\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\Resources\Resources\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Resources\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
-    <None Include="Assets\Resources\Resources\Spaceflight Controls\Documentation\Spaceflight Controls Setup Guide.txt" />
     <None Include="Assets\Resources\Spaceflight Controls\Documentation\Spaceflight Controls Setup Guide.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\Resources\Resources\Ultra Skybox Fog\Manual.txt" />
+    <None Include="Assets\Resources\Ultra Skybox Fog\Manual.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\Ultra Skybox Fog\Manual.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\Resources\Resources\Ultra Skybox Fog\Shaders\UltraSkyboxFog.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\Resources\Ultra Skybox Fog\Shaders\UltraSkyboxFog.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Resources\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Resources\Clean Title Transitions\Read Me.txt" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\Resources\Resources\Clean Title Transitions\Read Me.txt" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Ultra Skybox Fog\Textures\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\Resources\Resources\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
-    <None Include="Assets\Resources\Resources\SampleScenes\Shaders\Skybox-Procedural.shader" />
-    <None Include="Assets\Resources\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Resources\SampleScenes\Shaders\Skybox-Procedural.shader" />
+    <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <Reference Include="Unity.ProGrids">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProGrids.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.ProGrids.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/pcadmin/Desktop/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files (x86)/2018.3.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
