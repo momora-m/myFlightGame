@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 812a462009833024a88b8996f262eeb5
+guid: 7469d4eaf5d47b246b3501c892dd5292
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -15,12 +15,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Light
-    second: {fileID: 2100000, guid: 8021efbd0077a2c4cb1f546ae010f0c4, type: 2}
+    second: {fileID: 2100000, guid: 7fbd2c9f61df27244a153d2a0e349889, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MetalTrim
-    second: {fileID: 2100000, guid: 9575b1e0cf857ce43b60a2fd45f2b8a9, type: 2}
+    second: {fileID: 2100000, guid: 6f0dfd65f2b9f3841ae8217291bd7fa6, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -54,7 +54,6 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -79,9 +78,6 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -96,6 +92,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

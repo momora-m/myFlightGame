@@ -332,6 +332,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="PackageManagerAssembly">
+      <HintPath>C:/Users/pcadmin/Desktop/myFlightGame/flight-client/flight/Assets/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files (x86)/2018.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>
     </Reference>

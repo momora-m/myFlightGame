@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59747d0ce4526dd42bebf4a0dc7c627e
+guid: b03a156a678c5aa42b3abd35f650bb53
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -22,12 +22,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ConcreteWall
-    second: {fileID: 2100000, guid: f52fe35cb4767884faa28a7d3c05d0b5, type: 2}
+    second: {fileID: 2100000, guid: 5e8e99758645dfe4eba6cf71c1b4d1d0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: ShadowCaster
-    second: {fileID: 2100000, guid: 26732ab703429294daf9f14e5175ab95, type: 2}
+    second: {fileID: 2100000, guid: 4c8fbe587caf4ae4f8ab24935887f922, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -61,7 +61,6 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -86,9 +85,6 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
@@ -103,6 +99,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

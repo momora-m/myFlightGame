@@ -87,6 +87,7 @@
     <Compile Include="Assets\Resources\Spaceflight Controls\Scripts\PSDestroy.cs" />
     <Compile Include="Assets\Scripts\chasecamera.cs" />
     <Compile Include="Assets\Scripts\CountDownTimer.cs" />
+    <Compile Include="Assets\Scripts\FighterAudio.cs" />
     <Compile Include="Assets\Scripts\FighterController.cs" />
     <Compile Include="Assets\Scripts\FighterInputPS4.cs" />
     <Compile Include="Assets\Scripts\FighterStatus.cs" />
@@ -118,19 +119,18 @@
     <None Include="Assets\Ultra Skybox Fog\Shaders\UltraSkyboxFog.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Resources\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\Resources\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\Resources\Spaceflight Controls\Documentation\Spaceflight Controls Setup Guide.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
@@ -138,6 +138,7 @@
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Resources\Ultra Skybox Fog\Manual.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\Ultra Skybox Fog\Manual.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
@@ -147,8 +148,8 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Resources\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Resources\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\Resources\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Resources\Clean Title Transitions\Read Me.txt" />
