@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBullet1 : MonoBehaviour
+public class AfterbunnerEffect : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,14 +14,5 @@ public class HitBullet1 : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Debug.Log("Hit");
-            FindObjectOfType<Score>().AddPoint(30);
-        }
     }
 }
