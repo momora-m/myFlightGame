@@ -202,12 +202,10 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         {
             if (!IsPitchup /*&& ForwardSpeed > m_ZeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
                 //空力を考慮しないことにより、実にエスコン的な機動になる。
-                // "Aerodynamic" calculations. This is a very simple approximation of the effect that a plane
-                // 空力計算。これは、平面の効果の非常に単純な近似です
+                // 空力計算を行う。これは、翼が生み出す翼平面の効果の非常に単純な近似です
                 // will naturally try to align itself in the direction that it's facing when moving at speed.
                 //速度で移動するときに、自然と向き合う方向に自動的に整列しようとします。
-                // Without this, the plane would behave a bit like the asteroids spaceship!
-                //これなしだと、まるで宇宙船のような感じになるだろう。
+                //これをピッチアップ中は動作させないことで、現実ではありえないようなインメルマンターンを可能にする。
                 if (m_Rigidbody.velocity.magnitude > 0)
                 {
                     // 向いている方向と移動している方向(加速度から算出)を比較します。
