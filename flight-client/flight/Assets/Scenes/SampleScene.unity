@@ -1418,6 +1418,7 @@ GameObject:
   - component: {fileID: 1600342928}
   - component: {fileID: 1600342927}
   - component: {fileID: 1600342926}
+  - component: {fileID: 1600342929}
   m_Layer: 0
   m_Name: JetCameraRig
   m_TagString: Untagged
@@ -1447,7 +1448,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600342924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8d3968294210ba4a9d2bb96dfa74a16, type: 3}
   m_Name: 
@@ -1497,6 +1498,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1600342929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600342924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846a261b4cfe0594aa7dd89bfb48ac71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 349329939}
+  m_AutoTargetPlayer: 1
+  m_UpdateType: 0
+  m_MoveSpeed: 10
+  m_TurnSpeed: 10
+  m_RollSpeed: 0.2
+  m_FollowVelocity: 0
+  m_FollowTilt: 0
+  m_SpinTurnLimit: 90
+  m_TargetVelocityLowerLimit: 4
+  m_SmoothTurnTime: 0.2
 --- !u!1 &1608343221 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8992205117839842395, guid: 26a2ce403ea13cb488a6be992ee5dffc,

@@ -45,6 +45,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private float m_BankedTurnAmount;
         private Rigidbody m_Rigidbody;
         WheelCollider[] m_WheelColliders;
+        private bool isAutoPilot = false; //右ヨーと左ヨー同時入力で角度を戻す
 
         // Start is called before the first frame update
         void Start()

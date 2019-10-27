@@ -6,15 +6,15 @@ namespace UnityStandardAssets.Cameras
 {
     public abstract class PivotBasedCameraRig : AbstractTargetFollower
     {
-        // This script is designed to be placed on the root object of a camera rig,
+        // このスクリプトは、カメラリグのルートオブジェクトに配置されるように設計されています
         // comprising 3 gameobjects, each parented to the next:
 
         // 	Camera Rig
         // 		Pivot
         // 			Camera
 
-        protected Transform m_Cam; // the transform of the camera
-        protected Transform m_Pivot; // the point at which the camera pivots around
+        protected Transform m_Cam; // カメラの位置
+        protected Transform m_Pivot; // カメラが回転する位置
         protected Vector3 m_LastTargetPosition;
 
 
