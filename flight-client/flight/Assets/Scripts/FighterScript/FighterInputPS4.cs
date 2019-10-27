@@ -30,6 +30,10 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             bool airBrakes = CrossPlatformInputManager.GetButton("LeftB");
             // auto throttle up, or down if braking.
             float throttle = 0;
+
+            bool isAutoPilot = false; // ヨーの左右同時入力時、オートパイロットをオンにする
+            bool isPitchup = false; //ピッチアップしているときは、空力とか無視したい
+
             //float throttle = airBrakes ? -1 : 1;
             if (airEngines == true)
             {
@@ -56,7 +60,9 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             }
             if (yaw1 >= 0 && yaw2 >= 0)
             {
+                isAutoPilot = true; 
                 m_Aeroplane.Move(roll, pitch, 0, throttle, airBrakes);
+                m_Aeroplane.SetFighterStatus(isAutoPilot);
             }
 
 
