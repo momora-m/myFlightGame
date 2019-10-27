@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\FighterScript\AfterbunnerEffect.cs" />
     <Compile Include="Assets\Scripts\FighterScript\FighterAnimatorcontroller.cs" />
     <Compile Include="Assets\Scripts\FighterScript\FighterAudio.cs" />
+    <Compile Include="Assets\Scripts\FighterScript\FighterCamera.cs" />
     <Compile Include="Assets\Scripts\FighterScript\FighterController.cs" />
     <Compile Include="Assets\Scripts\FighterScript\FighterInputPS4.cs" />
     <Compile Include="Assets\Scripts\FighterScript\FighterStatus.cs" />
