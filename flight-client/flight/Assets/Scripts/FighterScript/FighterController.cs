@@ -37,15 +37,15 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         public float PitchInput { get; private set; }                     // ピッチ入力の際に与えられる力
         public float YawInput { get; private set; }                       //ヨー入力の際に与えられる力
         public float ThrottleInput { get; private set; }                  //スロットル入力の際に与えられる力
+        public bool IsAutoPilot { get; private set; }                     //右ヨーと左ヨー同時入力で角度を戻す
 
-        private float m_OriginalDrag;         // シーンが開始された時のDrag(RigidBody)
+    private float m_OriginalDrag;         // シーンが開始された時のDrag(RigidBody)
         private float m_OriginalAngularDrag;  // シーンが開始された時のAngularDrag(RigidBody)
         private float m_AeroFactor;
         private bool m_Immobilized = false;   //飛行機が制御不能(immobilized)になったとき使用
         private float m_BankedTurnAmount;
         private Rigidbody m_Rigidbody;
         WheelCollider[] m_WheelColliders;
-        private bool isAutoPilot = false; //右ヨーと左ヨー同時入力で角度を戻す
 
         // Start is called before the first frame update
         void Start()
@@ -128,24 +128,28 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
         private void AutoLevel()//自動的に角度を修正する
         {
-            // The banked turn amount (between -1 and 1) is the sine of the roll angle.
-            //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
-            //http://www.cfijapan.com/study/html/to199/html-to175/151a-turning.htm 参照
-            // this is an amount applied to elevator input if the user is only using the banking controls,
-            //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
-            // because that's what people expect to happen in games!
-            m_BankedTurnAmount = Mathf.Sin(RollAngle);
-            // auto level roll, if there's no roll input:
-            // ロール入力がされていないとき、自動的に行われるロール
-            if (RollInput == 0f)
+            //エスコン的操作のために、オートパイロット有効時に表示する。
+            if (IsAutoPilot == true)
             {
-                RollInput = -RollAngle * m_AutoRollLevel;
-            }
-            // auto correct pitch, if no pitch input (but also apply the banked turn amount)
-            if (PitchInput == 0f)
-            {
-                PitchInput = -PitchAngle * m_AutoPitchLevel;
-                PitchInput -= Mathf.Abs(m_BankedTurnAmount * m_BankedTurnAmount * m_AutoTurnPitch);
+                // The banked turn amount (between -1 and 1) is the sine of the roll angle.
+                //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
+                //http://www.cfijapan.com/study/html/to199/html-to175/151a-turning.htm 参照
+                // this is an amount applied to elevator input if the user is only using the banking controls,
+                //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
+
+                // because that's what people expect to happen in games!
+                m_BankedTurnAmount = Mathf.Sin(RollAngle);
+                // ロール入力がされていないとき、自動的に行われるロール
+                if (RollInput == 0f)
+                {
+                    RollInput = -RollAngle * m_AutoRollLevel;
+                }
+                // auto correct pitch, if no pitch input (but also apply the banked turn amount)
+                if (PitchInput == 0f)
+                {
+                    PitchInput = -PitchAngle * m_AutoPitchLevel;
+                    PitchInput -= Mathf.Abs(m_BankedTurnAmount * m_BankedTurnAmount * m_AutoTurnPitch);
+                }
             }
         }
 
@@ -293,11 +297,21 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             m_Immobilized = true;
         }
 
-
         // ObjectResetter scriptを使って、これを呼び出す。
         public void Reset()
         {
             m_Immobilized = false;
+        }
+
+        //ヨー同時押し以外も将来的に考慮したいから、こんな感じの実装
+        public void SetFighterStatus(bool isAutoPilot)
+        {
+            SetAutoPilot(isAutoPilot);
+        }
+
+        private void SetAutoPilot(bool isAutoPilot)
+        {
+            IsAutoPilot = isAutoPilot;
         }
     }
 }
