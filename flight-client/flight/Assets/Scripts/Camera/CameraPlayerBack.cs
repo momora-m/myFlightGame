@@ -28,11 +28,8 @@ public class CameraPlayerBack : MonoBehaviour
     void FixedUpdate()
     {
         currentPlayerPos = player.transform.position;
-        Debug.Log(currentPlayerPos);
-        Debug.Log(prevPlayerPos);
         backVector = (prevPlayerPos - currentPlayerPos).normalized*5;
         posVector = (prevPlayerPos.Round() - currentPlayerPos.Round() == Vector3.zero) ? posVector : backVector;//モデルの都合上微小に動くことは考えられるので、少数値は切り捨てて判断する
-        Debug.Log("backVector" + backVector);
         targetPos = currentPlayerPos + scale * posVector;
         targetPos.y = targetPos.y + 1f;
         this.transform.position = Vector3.Lerp(
