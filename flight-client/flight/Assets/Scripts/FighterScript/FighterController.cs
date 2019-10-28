@@ -96,7 +96,6 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
             CalculateAltitude();
 
-            Debug.Log(ForwardSpeed);
         }
         private void ClampInputs()
         {
