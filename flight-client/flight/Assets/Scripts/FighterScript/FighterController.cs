@@ -11,6 +11,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         [SerializeField] private float m_MaxEnginePower = 40f;        // エンジンの最大出力
         [SerializeField] private float m_Lift = 0.002f;               // 前方に移動する飛行機が生み出す揚力
         [SerializeField] private float m_ZeroLiftSpeed = 300;         // 揚力が適用されなくなる速度
+        [SerializeField] private float m_StoleSpeed = 60;             // ストールが開始される速度
         [SerializeField] private float m_RollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
         [SerializeField] private float m_PitchEffect = 0.5f;          // ピッチの入力に対してどれだけの効果を与えるか
         [SerializeField] private float m_YawEffect = 0.2f;            // ヨーの入力に対して、どれだけの効果を与えるか
@@ -21,7 +22,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         [SerializeField] private float m_AutoPitchLevel = 0.2f;       // ピッチを行っていないとき、飛行機がどれくらい水平になろうとするか
         [SerializeField] private float m_AirBrakesEffect = 3f;        // エアブレーキがどれだけの抗力を生み出すか
         [SerializeField] private float m_ThrottleChangeSpeed = 0.3f;  // スロットルが変化する速度
-        [SerializeField] private float m_DragIncreaseFactor = 0.001f; // 速度に応じてどれぐらい抗力が上昇するか
+        [SerializeField] private float m_DragIncreaseFactor = 0.001f;// 速度に応じてどれぐらい抗力が上昇するか
         //ここまでの値は、インスペクターで編集していじれる様にする
 
 
@@ -94,6 +95,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             CalculateTorque();
 
             CalculateAltitude();
+
+            Debug.Log(ForwardSpeed);
         }
         private void ClampInputs()
         {
@@ -244,8 +247,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             // Add the engine power in the forward direction
             // 前進方向にエンジンの力
             forces += EnginePower * transform.forward;
-            // The direction that the lift force is applied is at right angles to the plane's velocity (usually, this is 'up'!)
-            //  揚力を、飛行機の速度に対して垂直に発生させる(通常、これは上に発生する) 
+            //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求めて正規化する。
             var liftDirection = Vector3.Cross(m_Rigidbody.velocity, transform.right).normalized;
             // The amount of lift drops off as the plane increases speed - in reality this occurs as the pilot retracts the flaps
             // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
