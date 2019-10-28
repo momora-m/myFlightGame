@@ -47,7 +47,6 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private bool m_Immobilized = false;   //飛行機が制御不能(immobilized)になったとき使用
         private float m_BankedTurnAmount;
         private Rigidbody m_Rigidbody;
-        private bool TestFlag = true;
         WheelCollider[] m_WheelColliders;
 
         // Start is called before the first frame update
@@ -97,8 +96,6 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
             CalculateAltitude();
 
-            Debug.Log(ForwardSpeed);
-
         }
         private void ClampInputs()
         {
@@ -135,22 +132,23 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
         private void AutoLevel()//自動的に角度を修正する
         {
-            //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
-            //http://www.cfijapan.com/study/html/to199/html-to175/151a-turning.htm 参照
-            // this is an amount applied to elevator input if the user is only using the banking controls,
-            //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
-
-            // because that's what people expect to happen in games!
-            m_BankedTurnAmount = Mathf.Sin(RollAngle);
             //エスコン的操作のために、オートパイロット有効時に表示する。
             if (IsAutoPilot == true)
             {
-                // 以下はオートパイロット有効時に行われる、自動的に機体を水平にしようとする力
+                // The banked turn amount (between -1 and 1) is the sine of the roll angle.
+                //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
+                //http://www.cfijapan.com/study/html/to199/html-to175/151a-turning.htm 参照
+                // this is an amount applied to elevator input if the user is only using the banking controls,
+                //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
+
+                // because that's what people expect to happen in games!
+                m_BankedTurnAmount = Mathf.Sin(RollAngle);
+                // ロール入力がされていないとき、自動的に行われるロール
                 if (RollInput == 0f)
                 {
                     RollInput = -RollAngle * m_AutoRollLevel;
                 }
-                // ピッチを自動的に修正する。バンクターンを行うことで、揚力が低下し、機首は下がるので、バンクターン量分も補正してやる 2乗で補正すると高速かつなめらかに水平になる。
+                // auto correct pitch, if no pitch input (but also apply the banked turn amount)
                 if (PitchInput == 0f)
                 {
                     PitchInput = -PitchAngle * m_AutoPitchLevel;
@@ -163,6 +161,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void CalculateForwardSpeed()
         {
             //前進速度は、飛行機が前に進もうとしているときの速度であって、ストールしているときの速度とは別
+            // Forward speed is the speed in the planes's forward direction (not the same as its velocity, eg if falling in a stall)
             var localVelocity = transform.InverseTransformDirection(m_Rigidbody.velocity);
             ForwardSpeed = Mathf.Max(0, localVelocity.z);
         }
@@ -189,6 +188,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
         private void CalculateDrag()
         {
+            // increase the drag based on speed, since a constant drag doesn't seem "Real" (tm) enough
             //リアルに見せるために速度に応じて、抗力を上昇させるようにする
             float extraDrag = m_Rigidbody.velocity.magnitude * m_DragIncreaseFactor;
             // Air brakes work by directly modifying drag. This part is actually pretty realistic!
@@ -202,7 +202,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         
         private void CaluclateAerodynamicEffect()
         {
-            if (!IsPitchup) {//ピッチアップしているときは、空力の影響を考慮しない
+            if (!IsPitchup /*&& ForwardSpeed > m_ZeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
                 //空力を考慮しないことにより、実にエスコン的な機動になる。
                 // 空力計算を行う。これは、翼が生み出す翼平面の効果の非常に単純な近似です
                 // will naturally try to align itself in the direction that it's facing when moving at speed.
@@ -248,7 +248,9 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             forces += EnginePower * transform.forward;
             //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求めて正規化する。
             var liftDirection = Vector3.Cross(m_Rigidbody.velocity, transform.right).normalized;
+            // The amount of lift drops off as the plane increases speed - in reality this occurs as the pilot retracts the flaps
             // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
+            // shortly after takeoff, giving the plane less drag, but less lift. Because we don't simulate flaps, this is a simple way of doing it automatically:
             //フラップを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
             var zeroLiftFactor = Mathf.InverseLerp(m_ZeroLiftSpeed, 0, ForwardSpeed);
             // Calculate and add the lift power
@@ -274,7 +276,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             // バンクターン
             torque += m_BankedTurnAmount * m_BankedTurnEffect * transform.up;
             //合計トルクに前進速度が乗算されるため、コントロールは高速でより効果があり、
-            //低速もしくは飛行機の機首方向に移動していないときは、ほとんど曲がらないようにする いわゆるストールである。
+            //低速で、または飛行機の機首の方向に移動していない場合はほとんど効果がありません
             //ストール中は落下する
             m_Rigidbody.AddTorque(torque * ForwardSpeed * m_AeroFactor);
         }
