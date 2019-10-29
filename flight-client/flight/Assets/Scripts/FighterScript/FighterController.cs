@@ -100,8 +100,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void ClampInputs()
         {
             // 入力を-1から1への間に制限する
-            RollInput = Mathf.Clamp(RollInput, -1, 1);
-            PitchInput = Mathf.Clamp(PitchInput, -1, 1);
+            RollInput = Mathf.Clamp(RollInput, -1f, 1f);
+            PitchInput = Mathf.Clamp(PitchInput, -1f, 1f);
             YawInput = Mathf.Clamp(YawInput, -1, 1);
             ThrottleInput = Mathf.Clamp(ThrottleInput, -1, 1);
         }
