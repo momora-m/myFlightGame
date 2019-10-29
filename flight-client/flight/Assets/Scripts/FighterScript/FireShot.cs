@@ -38,7 +38,7 @@ public class FireShot : MonoBehaviour
             {
                 deleteBullet();
             }
-            Debug.Log(Fire);
+            //Debug.Log(Fire);
         }
         bool fireLaser = CrossPlatformInputManager.GetButton("Fire2");
         if (fireLaser)
