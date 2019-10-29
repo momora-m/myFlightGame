@@ -25,6 +25,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             float pitch = CrossPlatformInputManager.GetAxis("Vertical");
             float yaw1 = CrossPlatformInputManager.GetAxis("YawS1");
             float yaw2 = CrossPlatformInputManager.GetAxis("YawS2");
+            float cameraHorizontal = CrossPlatformInputManager.GetAxis("HorizontalRight");
+            float cameraVertical = CrossPlatformInputManager.GetAxis("VerticalRight");
             //bool airBrakes = CrossPlatformInputManager.GetButton("Fire1");
             bool airEngines = CrossPlatformInputManager.GetButton("RightB");
             bool airBrakes = CrossPlatformInputManager.GetButton("LeftB");
