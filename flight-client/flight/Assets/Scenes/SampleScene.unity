@@ -1067,11 +1067,11 @@ GameObject:
   - component: {fileID: 1066086692}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1066086688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,6 +1087,7 @@ MonoBehaviour:
   player: {fileID: 8992205117702577228}
   scale: 3
   cameraSpeed: 100
+  rotateSpeed: 15
 --- !u!81 &1066086689
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1961,7 +1962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1735499107
 Transform:
   m_ObjectHideFlags: 0
@@ -2003,7 +2004,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846217671}
   m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -2.210718, y: -0.8615819, z: -1.106245}
+  m_LocalPosition: {x: 2.91, y: -0.8615819, z: -1.106245}
   m_LocalScale: {x: 0.06753389, y: 0.9869409, z: 0.06753389}
   m_Children: []
   m_Father: {fileID: 1441689506}
