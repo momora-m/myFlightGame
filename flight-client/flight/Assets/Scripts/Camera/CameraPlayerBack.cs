@@ -32,7 +32,7 @@ namespace PlayerCamera {
             posVector = (prevPlayerPos.Round() - currentPlayerPos.Round() == Vector3.zero) ? posVector : backVector;//モデルの都合上微小に動くことは考えられるので、少数値は切り捨てて判断する
             targetPos = currentPlayerPos + scale * posVector;
             targetPos.y = targetPos.y + 1f;
-            transform.position = Vector3.Lerp(
+            transform.position = Vector3.Lerp(//線形補間を行うことでプレイヤーが酔わないようなカメラ移動にする
                 transform.position,
                 targetPos,
                 cameraSpeed * Time.deltaTime
