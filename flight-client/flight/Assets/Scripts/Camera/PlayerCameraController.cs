@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class playerCameraController : MonoBehaviour
+public class PlayerCameraController : MonoBehaviour
 {
     [SerializeField]
     private Transform  m_target = null;

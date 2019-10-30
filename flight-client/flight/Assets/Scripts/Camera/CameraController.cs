@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace PlayerCamera{
+namespace PlayerCamera {
 public class CameraController : MonoBehaviour
 {
     private CameraPlayerInput moveCamera;
