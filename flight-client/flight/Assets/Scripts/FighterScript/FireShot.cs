@@ -28,7 +28,7 @@ public class FireShot : MonoBehaviour
         if (shotInterval % 5 == 0)
         {
 
-            bool Fire = CrossPlatformInputManager.GetButton("Fire1");
+            bool Fire = CrossPlatformInputManager.GetButton("Fire1");//TODO FighterInputPS4でリファクタを行う。  
             if (Fire)
             {
                 shotWeapon();
@@ -38,7 +38,7 @@ public class FireShot : MonoBehaviour
             {
                 deleteBullet();
             }
-            Debug.Log(Fire);
+            //Debug.Log(Fire);
         }
         bool fireLaser = CrossPlatformInputManager.GetButton("Fire2");
         if (fireLaser)

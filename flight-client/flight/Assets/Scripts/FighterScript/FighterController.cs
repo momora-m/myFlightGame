@@ -14,7 +14,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         [SerializeField] private float m_StoleSpeed = 60;             // ストールが開始される速度
         [SerializeField] private float m_RollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
         [SerializeField] private float m_PitchEffect = 0.5f;          // ピッチの入力に対してどれだけの効果を与えるか
-        [SerializeField] private float m_YawEffect = 0.2f;            // ヨーの入力に対して、どれだけの効果を与えるか
+        [SerializeField] private float m_YawEffect = 0.05f;            // ヨーの入力に対して、どれだけの効果を与えるか
         [SerializeField] private float m_BankedTurnEffect = 0.5f;     // バンクターンを行っているときのターンの量
         [SerializeField] private float m_AerodynamicEffect = 0.02f;   // 空力がどれくらい飛行機の速度に影響を与えるか
         [SerializeField] private float m_AutoTurnPitch = 0.5f;        // バンクターン中に、飛行機が自動的に行うピッチングの量
@@ -100,8 +100,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void ClampInputs()
         {
             // 入力を-1から1への間に制限する
-            RollInput = Mathf.Clamp(RollInput, -1, 1);
-            PitchInput = Mathf.Clamp(PitchInput, -1, 1);
+            RollInput = Mathf.Clamp(RollInput, -1f, 1f);
+            PitchInput = Mathf.Clamp(PitchInput, -1f, 1f);
             YawInput = Mathf.Clamp(YawInput, -1, 1);
             ThrottleInput = Mathf.Clamp(ThrottleInput, -1, 1);
         }

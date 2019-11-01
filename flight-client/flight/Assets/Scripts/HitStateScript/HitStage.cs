@@ -9,14 +9,14 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
     {
         public GameObject explode;
 
-        private FighterController m_Aeroplane;
+        private FighterController m_Fighter;
 
         private int flg = 0;
         // Start is called before the first frame update
         void Start()
         {
             // 戦闘機モデルにアタッチされたFighterControllerを取得する
-            m_Aeroplane = GetComponent<FighterController>();
+            m_Fighter = GetComponent<FighterController>();
         }
 
         // Update is called once per frame
@@ -28,7 +28,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         {
             if (collision.gameObject.tag == "Stage" || collision.gameObject.tag == "Enemy")
             {
-                m_Aeroplane.Immobilize();
+                //m_Aeroplane.Immobilize();
                 Instantiate(explode, this.transform.
                     position, Quaternion.identity);
                 Debug.Log("hit");
