@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitBullet : MonoBehaviour
 {
 
-    public int flg;
+    public int shipType;
 
     GameObject scoreUI;
 
@@ -28,17 +28,17 @@ public class HitBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            if (flg == 0)
+            if (shipType == 0)
             {
                 scoreUI = GameObject.FindGameObjectWithTag("Score");
                 scoreUI.GetComponent<Score>().AddPoint(10);
             }
-            if (flg == 1)
+            if (shipType == 1)
             {
                 scoreUI = GameObject.FindGameObjectWithTag("Score");
                 scoreUI.GetComponent<Score>().AddPoint(20);
             }
-            if (flg == 2)
+            if (shipType == 2)
             {
                 scoreUI = GameObject.FindGameObjectWithTag("Score");
                 scoreUI.GetComponent<Score>().AddPoint(50);
