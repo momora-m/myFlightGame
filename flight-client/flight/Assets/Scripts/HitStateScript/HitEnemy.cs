@@ -16,13 +16,16 @@ public class HitEnemy : MonoBehaviour
         
     }
 
-    /*void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy1")
         {
             FindObjectOfType<Score>().AddPoint(10);
 
             Destroy(this.gameObject);
         }
-    }*/
+        if (collision.gameObject.tag == "Enemy1") {
+            
+        }
+    }
 }
