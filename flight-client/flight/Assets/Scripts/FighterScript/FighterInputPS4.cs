@@ -8,13 +8,13 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
     public class FighterInputPS4 : MonoBehaviour//R2とL2の入力の関係上PS4コントローラーでしか動作しません！Fuck
     {
 
-        private FighterController m_Aeroplane;
+        private FighterController m_Fighter;
 
 
         private void Awake()
         {
             // 戦闘機モデルにアタッチされたFighterControllerを取得する
-            m_Aeroplane = GetComponent<FighterController>();
+            m_Fighter = GetComponent<FighterController>();
         }
 
 
@@ -51,24 +51,24 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             // TODO いつか改善したい
             if (yaw1 < 0 && yaw2 < 0)
             {
-                m_Aeroplane.Move(roll, pitch, 0, throttle, airBrakes);
-                m_Aeroplane.SetFighterStatus(isAutoPilot, isPitchup);
+                m_Fighter.Move(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw1 >= 0 && yaw2 < 0)
             {
-                m_Aeroplane.Move(roll, pitch, -yaw1, throttle, airBrakes);
-                m_Aeroplane.SetFighterStatus(isAutoPilot, isPitchup);
+                m_Fighter.Move(roll, pitch, -yaw1, throttle, airBrakes);
+                m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw2 >= 0 && yaw1 < 0)
             {
-                m_Aeroplane.Move(roll, pitch, yaw2, throttle, airBrakes);
-                m_Aeroplane.SetFighterStatus(isAutoPilot, isPitchup);
+                m_Fighter.Move(roll, pitch, yaw2, throttle, airBrakes);
+                m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw1 >= 0 && yaw2 >= 0)
             {
                 isAutoPilot = true; 
-                m_Aeroplane.Move(roll, pitch, 0, throttle, airBrakes);
-                m_Aeroplane.SetFighterStatus(isAutoPilot, isPitchup);
+                m_Fighter.Move(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
 
 

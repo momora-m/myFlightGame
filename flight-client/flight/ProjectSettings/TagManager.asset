@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Stage
+  - Score
+  - Icon
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
