@@ -8,9 +8,9 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
     [RequireComponent(typeof(Rigidbody))]//Rigidbodyが無い時強制的にアタッチする
     public class FighterController : MonoBehaviour
     {
-        [SerializeField] private float m_MaxEnginePower = 40f;        // エンジンの最大出力
-        [SerializeField] private float m_Lift = 0.002f;               // 前方に移動する飛行機が生み出す揚力
-        [SerializeField] private float m_ZeroLiftSpeed = 300;         // 揚力が適用されなくなる速度
+        [SerializeField] private float maxEnginePower = 40f;        // エンジンの最大出力
+        [SerializeField] private float liftFighter = 0.002f;               // 前方に移動する飛行機が生み出す揚力
+        [SerializeField] private float zeroLiftSpeed = 300;         // 揚力が適用されなくなる速度
         [SerializeField] private float m_StoleSpeed = 60;             // ストールが開始される速度
         [SerializeField] private float m_RollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
         [SerializeField] private float m_PitchEffect = 0.5f;          // ピッチの入力に対してどれだけの効果を与えるか
@@ -31,7 +31,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         public bool AirBrakes { get; private set; }                     // エアブレーキが適用されているかどうか
         public float ForwardSpeed { get; private set; }                 // 飛行機が前方に進む速度
         public float EnginePower { get; private set; }                  // エンジンに与えられる力
-        public float MaxEnginePower { get { return m_MaxEnginePower; } }    // エンジンの最大出力
+        public float MaxEnginePower { get { return maxEnginePower; } }    // エンジンの最大出力
         public float RollAngle { get; private set; }                      // ロールの角度
         public float PitchAngle { get; private set; }                     // ピッチの角度
         public float RollInput { get; private set; }                      // ロール入力の際に与えられる力 
@@ -182,7 +182,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
             // current engine power is just:
             //現在のエンジン出力
-            EnginePower = Throttle * m_MaxEnginePower;
+            EnginePower = Throttle * maxEnginePower;
         }
 
 
@@ -202,10 +202,9 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         
         private void CaluclateAerodynamicEffect()
         {
-            if (!IsPitchup /*&& ForwardSpeed > m_ZeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
+            if (!IsPitchup /*&& ForwardSpeed > zeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
                 //空力を考慮しないことにより、実にエスコン的な機動になる。
                 // 空力計算を行う。これは、翼が生み出す翼平面の効果の非常に単純な近似です
-                // will naturally try to align itself in the direction that it's facing when moving at speed.
                 //速度で移動するときに、自然と向き合う方向に自動的に整列しようとします。
                 //これをピッチアップ中は動作させないことで、現実ではありえないようなインメルマンターンを可能にする。
                 if (m_Rigidbody.velocity.magnitude > 0)
@@ -238,26 +237,19 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
         private void CalculateLinearForces()
         {
-            // Now calculate forces acting on the aeroplane:
             // 飛行機に与える力を計算する
-            // we accumulate forces into this variable:
             // この変数に力を与えていく
             var forces = Vector3.zero;
-            // Add the engine power in the forward direction
             // 前進方向にエンジンの力
             forces += EnginePower * transform.forward;
             //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求めて正規化する。
             var liftDirection = Vector3.Cross(m_Rigidbody.velocity, transform.right).normalized;
-            // The amount of lift drops off as the plane increases speed - in reality this occurs as the pilot retracts the flaps
             // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
-            // shortly after takeoff, giving the plane less drag, but less lift. Because we don't simulate flaps, this is a simple way of doing it automatically:
             //フラップを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
-            var zeroLiftFactor = Mathf.InverseLerp(m_ZeroLiftSpeed, 0, ForwardSpeed);
-            // Calculate and add the lift power
+            var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, ForwardSpeed);
             //揚力を計算し、加える。
-            var liftPower = ForwardSpeed * ForwardSpeed * m_Lift * zeroLiftFactor * m_AeroFactor;
+            var liftPower = ForwardSpeed * ForwardSpeed * liftFighter * zeroLiftFactor * m_AeroFactor;
             forces += liftPower * liftDirection;
-            // Apply the calculated forces to the the Rigidbody
             //計算した力を加える。
             m_Rigidbody.AddForce(forces);
         }
