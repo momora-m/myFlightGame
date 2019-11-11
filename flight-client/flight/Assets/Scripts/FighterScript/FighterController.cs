@@ -8,54 +8,54 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
     [RequireComponent(typeof(Rigidbody))]//Rigidbodyが無い時強制的にアタッチする
     public class FighterController : MonoBehaviour
     {
-        [SerializeField] private float maxEnginePower = 40f;        // エンジンの最大出力
+        [SerializeField] private float maxEnginePowerThrottle = 40f;        // エンジンの最大出力
         [SerializeField] private float liftFighter = 0.002f;               // 前方に移動する飛行機が生み出す揚力
         [SerializeField] private float zeroLiftSpeed = 300;         // 揚力が適用されなくなる速度
-        [SerializeField] private float m_StoleSpeed = 60;             // ストールが開始される速度
-        [SerializeField] private float m_RollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
-        [SerializeField] private float m_PitchEffect = 0.5f;          // ピッチの入力に対してどれだけの効果を与えるか
-        [SerializeField] private float m_YawEffect = 0.05f;            // ヨーの入力に対して、どれだけの効果を与えるか
-        [SerializeField] private float m_BankedTurnEffect = 0.5f;     // バンクターンを行っているときのターンの量
-        [SerializeField] private float m_AerodynamicEffect = 0.02f;   // 空力がどれくらい飛行機の速度に影響を与えるか
-        [SerializeField] private float m_AutoTurnPitch = 0.5f;        // バンクターン中に、飛行機が自動的に行うピッチングの量
-        [SerializeField] private float m_AutoRollLevel = 0.2f;        // ロールを行っていないとき、飛行機がどれくらい水平になろうとするか
-        [SerializeField] private float m_AutoPitchLevel = 0.2f;       // ピッチを行っていないとき、飛行機がどれくらい水平になろうとするか
-        [SerializeField] private float m_AirBrakesEffect = 3f;        // エアブレーキがどれだけの抗力を生み出すか
-        [SerializeField] private float m_ThrottleChangeSpeed = 0.3f;  // スロットルが変化する速度
-        [SerializeField] private float m_DragIncreaseFactor = 0.001f;// 速度に応じてどれぐらい抗力が上昇するか
+        [SerializeField] private float stoleSpeed = 60;             // ストールが開始される速度
+        [SerializeField] private float rollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
+        [SerializeField] private float pitchEffect = 0.5f;          // ピッチの入力に対してどれだけの効果を与えるか
+        [SerializeField] private float yawEffect = 0.05f;            // ヨーの入力に対して、どれだけの効果を与えるか
+        [SerializeField] private float bankedTurnEffect = 0.5f;     // バンクターンを行っているときのターンの量
+        [SerializeField] private float aeroDynamicEffect = 0.02f;   // 空力がどれくらい飛行機の速度に影響を与えるか
+        [SerializeField] private float autoTurnPitch = 0.5f;        // バンクターン中に、飛行機が自動的に行うピッチングの量
+        [SerializeField] private float autoRollLevel = 0.2f;        // ロールを行っていないとき、飛行機がどれくらい水平になろうとするか
+        [SerializeField] private float autoPitchLevel = 0.2f;       // ピッチを行っていないとき、飛行機がどれくらい水平になろうとするか
+        [SerializeField] private float airBrakesEffect = 3f;        // エアブレーキがどれだけの抗力を生み出すか
+        [SerializeField] private float throttleChangeSpeed = 0.3f;  // スロットルが変化する速度
+        [SerializeField] private float dragIncreaseFactor = 0.001f;// 速度に応じてどれぐらい抗力が上昇するか
         //ここまでの値は、インスペクターで編集していじれる様にする
 
 
-        public float Altitude { get; private set; }                     // 飛行機の地上からの高さ 
-        public float Throttle { get; private set; }                     // 使用されているスロットルの量
-        public bool AirBrakes { get; private set; }                     // エアブレーキが適用されているかどうか
-        public float ForwardSpeed { get; private set; }                 // 飛行機が前方に進む速度
-        public float EnginePower { get; private set; }                  // エンジンに与えられる力
-        public float MaxEnginePower { get { return maxEnginePower; } }    // エンジンの最大出力
-        public float RollAngle { get; private set; }                      // ロールの角度
-        public float PitchAngle { get; private set; }                     // ピッチの角度
-        public float RollInput { get; private set; }                      // ロール入力の際に与えられる力 
-        public float PitchInput { get; private set; }                     // ピッチ入力の際に与えられる力
-        public float YawInput { get; private set; }                       //ヨー入力の際に与えられる力
-        public float ThrottleInput { get; private set; }                  //スロットル入力の際に与えられる力
-        public bool IsAutoPilot { get; private set; }                     //オートパイロット状態か否か
-        public bool IsPitchup { get; private set; }
+        public float altitude { get; private set; }                     // 飛行機の地上からの高さ 
+        public float throttle { get; private set; }                     // 使用されているスロットルの量
+        public bool airBrakes { get; private set; }                     // エアブレーキが適用されているかどうか
+        public float forwardSpeed { get; private set; }                 // 飛行機が前方に進む速度
+        public float enginePower { get; private set; }                  // エンジンに与えられる力
+        public float maxEnginePower { get { return maxEnginePowerThrottle; } }    // エンジンの最大出力
+        public float rollAngle { get; private set; }                      // ロールの角度
+        public float pitchAngle { get; private set; }                     // ピッチの角度
+        public float rollInput { get; private set; }                      // ロール入力の際に与えられる力 
+        public float pitchInput { get; private set; }                     // ピッチ入力の際に与えられる力
+        public float yawInput { get; private set; }                       //ヨー入力の際に与えられる力
+        public float throttleInput { get; private set; }                  //スロットル入力の際に与えられる力
+        public bool isAutoPilot { get; private set; }                     //オートパイロット状態か否か
+        public bool isPitchup { get; private set; }
 
-        private float m_OriginalDrag;         // シーンが開始された時のDrag(RigidBody)
-        private float m_OriginalAngularDrag;  // シーンが開始された時のAngularDrag(RigidBody)
-        private float m_AeroFactor;
-        private bool m_Immobilized = false;   //飛行機が制御不能(immobilized)になったとき使用
-        private float m_BankedTurnAmount;
-        private Rigidbody m_Rigidbody;
+        private float originalDrag;         // シーンが開始された時のDrag(RigidBody)
+        private float originalAngularDrag;  // シーンが開始された時のAngularDrag(RigidBody)
+        private float aeroFactor;
+        private bool immobilizedFighter = false;   //飛行機が制御不能(immobilized)になったとき使用
+        private float bankedTurnAmount;
+        private Rigidbody rigidbodyFighter;
         WheelCollider[] m_WheelColliders;
 
         // Start is called before the first frame update
         void Start()
         {
-            m_Rigidbody = GetComponent<Rigidbody>();
-            //初期値のDrag(抗力)を取得する、飛行中にDragは変更される)
-            m_OriginalDrag = m_Rigidbody.drag;
-            m_OriginalAngularDrag = m_Rigidbody.angularDrag;
+            rigidbodyFighter = GetComponent<Rigidbody>();
+            //オブジェクト(戦闘機の)抗力の初期値を
+            originalDrag = rigidbodyFighter.drag;
+            originalAngularDrag = rigidbodyFighter.angularDrag;
 
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -67,14 +67,14 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         }
 
         //飛行機の移動そのものに関する関数
-        public void Move(float rollInput, float pitchInput, float yawInput, float throttleInput, bool airBrakes)
+        public void MoveFighter(float rollInputControll, float pitchInputControll, float yawInputControll, float throttleInputControll, bool airBrakesControll)
         {
             // 入力パラメーターを転送
-            RollInput = rollInput;
-            PitchInput = pitchInput;
-            YawInput = yawInput;
-            ThrottleInput = throttleInput;
-            AirBrakes = airBrakes;
+            rollInput = rollInputControll;
+            pitchInput = pitchInputControll;
+            yawInput = yawInputControll;
+            throttleInput = throttleInputControll;
+            airBrakes = airBrakesControll;
 
             ClampInputs();
 
@@ -100,10 +100,10 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void ClampInputs()
         {
             // 入力を-1から1への間に制限する
-            RollInput = Mathf.Clamp(RollInput, -1f, 1f);
-            PitchInput = Mathf.Clamp(PitchInput, -1f, 1f);
-            YawInput = Mathf.Clamp(YawInput, -1, 1);
-            ThrottleInput = Mathf.Clamp(ThrottleInput, -1, 1);
+            rollInput = Mathf.Clamp(rollInput, -1f, 1f);
+            pitchInput = Mathf.Clamp(pitchInput, -1f, 1f);
+            yawInput = Mathf.Clamp(yawInput, -1, 1);
+            throttleInput = Mathf.Clamp(throttleInput, -1, 1);
         }
 
 
@@ -121,11 +121,11 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
                 flatForward.Normalize();//ベクトルを正規化する
                 // ピッチの角度を計算
                 var localFlatForward = transform.InverseTransformDirection(flatForward);//ワールド座標からローカル座標への変換
-                PitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//localFlatForward.zを中心として、localFlatForward.yが何度の位置にあるか。
+                pitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//localFlatForward.zを中心として、localFlatForward.yが何度の位置にあるか。
                 // ロールの角度を計算
                 var flatRight = Vector3.Cross(Vector3.up, flatForward);//外積を求めることで、右の角度か左の角度かを判断する
                 var localFlatRight = transform.InverseTransformDirection(flatRight);
-                RollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);
+                rollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void AutoLevel()//自動的に角度を修正する
         {
             //エスコン的操作のために、オートパイロット有効時に表示する。
-            if (IsAutoPilot == true)
+            if (isAutoPilot == true)
             {
                 // The banked turn amount (between -1 and 1) is the sine of the roll angle.
                 //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
@@ -142,17 +142,17 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
                 //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
 
                 // because that's what people expect to happen in games!
-                m_BankedTurnAmount = Mathf.Sin(RollAngle);
+                bankedTurnAmount = Mathf.Sin(rollAngle);
                 // ロール入力がされていないとき、自動的に行われるロール
-                if (RollInput == 0f)
+                if (rollInput == 0f)
                 {
-                    RollInput = -RollAngle * m_AutoRollLevel;
+                    rollInput = -rollAngle * autoRollLevel;
                 }
                 // auto correct pitch, if no pitch input (but also apply the banked turn amount)
-                if (PitchInput == 0f)
+                if (pitchInput == 0f)
                 {
-                    PitchInput = -PitchAngle * m_AutoPitchLevel;
-                    PitchInput -= Mathf.Abs(m_BankedTurnAmount * m_BankedTurnAmount * m_AutoTurnPitch);
+                    pitchInput = -pitchAngle * autoPitchLevel;
+                    pitchInput -= Mathf.Abs(bankedTurnAmount * bankedTurnAmount * autoTurnPitch);
                 }
             }
         }
@@ -161,9 +161,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void CalculateForwardSpeed()
         {
             //前進速度は、飛行機が前に進もうとしているときの速度であって、ストールしているときの速度とは別
-            // Forward speed is the speed in the planes's forward direction (not the same as its velocity, eg if falling in a stall)
-            var localVelocity = transform.InverseTransformDirection(m_Rigidbody.velocity);
-            ForwardSpeed = Mathf.Max(0, localVelocity.z);
+            var localVelocity = transform.InverseTransformDirection(rigidbodyFighter.velocity);
+            forwardSpeed = Mathf.Max(0, localVelocity.z);
         }
 
 
@@ -171,65 +170,63 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         {
             // override throttle if immobilized
             // スロットルが固定されている場合は、オーバーライド(上書き)する
-            if (m_Immobilized)
+            if (immobilizedFighter)
             {
-                ThrottleInput = -0.5f;
+                throttleInput = -0.5f;
             }
 
             // Adjust throttle based on throttle input (or immobilized state)
             //スロットルの入力に応じて(もしくは入力が固定されているとき)、スロットルを調整する 変数として定義済み
-            Throttle = Mathf.Clamp01(Throttle + ThrottleInput * Time.deltaTime * m_ThrottleChangeSpeed);
+            throttle = Mathf.Clamp01(throttle + throttleInput * Time.deltaTime * throttleChangeSpeed);
 
             // current engine power is just:
             //現在のエンジン出力
-            EnginePower = Throttle * maxEnginePower;
+            enginePower = throttle * maxEnginePowerThrottle;
         }
 
 
         private void CalculateDrag()
         {
-            // increase the drag based on speed, since a constant drag doesn't seem "Real" (tm) enough
-            //リアルに見せるために速度に応じて、抗力を上昇させるようにする
-            float extraDrag = m_Rigidbody.velocity.magnitude * m_DragIncreaseFactor;
+            //速度が上がればあがるほど、翼にかかる誘導抗力は当然上昇するので、疑似的な係数を使って表現する。
+            float extraDrag = rigidbodyFighter.velocity.magnitude * dragIncreaseFactor;
             // Air brakes work by directly modifying drag. This part is actually pretty realistic!
             // エアブレーキは抗力から直接取得する
-            m_Rigidbody.drag = (AirBrakes ? (m_OriginalDrag + extraDrag) * m_AirBrakesEffect : m_OriginalDrag + extraDrag);
-            // Forward speed affects angular drag - at high forward speed, it's much harder for the plane to spin
+            rigidbodyFighter.drag = (airBrakes ? (originalDrag + extraDrag) * airBrakesEffect : originalDrag + extraDrag);
             //前進速度が速ければ速いほど、曲がりにくくなる
-            m_Rigidbody.angularDrag = m_OriginalAngularDrag * ForwardSpeed;
+            rigidbodyFighter.angularDrag = originalAngularDrag * forwardSpeed;
         }
 
         
         private void CaluclateAerodynamicEffect()
         {
-            if (!IsPitchup /*&& ForwardSpeed > zeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
+            if (!isPitchup /*&& forwardSpeed > zeroLiftSpeed*/) {//ピッチアップしているときは、空力の影響を考慮しない
                 //空力を考慮しないことにより、実にエスコン的な機動になる。
                 // 空力計算を行う。これは、翼が生み出す翼平面の効果の非常に単純な近似です
                 //速度で移動するときに、自然と向き合う方向に自動的に整列しようとします。
                 //これをピッチアップ中は動作させないことで、現実ではありえないようなインメルマンターンを可能にする。
-                if (m_Rigidbody.velocity.magnitude > 0)
+                if (rigidbodyFighter.velocity.magnitude > 0)
                 {
                     // 向いている方向と移動している方向(加速度から算出)を比較します。
-                    m_AeroFactor = Vector3.Dot(transform.forward, m_Rigidbody.velocity.normalized);
+                    aeroFactor = Vector3.Dot(transform.forward, rigidbodyFighter.velocity.normalized);
                     // multipled by itself results in a desirable rolloff curve of the effect
                     //乗算することで、空力の効果を高める
-                    m_AeroFactor *= m_AeroFactor;
+                    aeroFactor *= aeroFactor;
                     // Finally we calculate a new velocity by bending the current velocity direction towards
                     // 最後に、現在の速度方向を曲げて新しい速度を計算します
                     // the the direction the plane is facing, by an amount based on this aeroFactor
                     // このaeroFactorに基づく量による、飛行機が向いている方向
-                    var newVelocity = Vector3.Lerp(m_Rigidbody.velocity, transform.forward * ForwardSpeed,
-                                                   m_AeroFactor * ForwardSpeed * m_AerodynamicEffect * Time.deltaTime);
-                    m_Rigidbody.velocity = newVelocity;
+                    var newVelocity = Vector3.Lerp(rigidbodyFighter.velocity, transform.forward * forwardSpeed,
+                                                   aeroFactor * forwardSpeed * aeroDynamicEffect * Time.deltaTime);
+                    rigidbodyFighter.velocity = newVelocity;
                     //なめらかに移動させるために線形補完を行っている
 
-                    // also rotate the plane towards the direction of movement - this should be a very small effect, but means the plane ends up
+                    // also rotate the plane towards the direction of moveFighterment - this should be a very small effect, but means the plane ends up
                     // 向いている方向に向けて、飛行機を移動させる
                     // pointing downwards in a stall
                     // ストールしているときは、下向きの力になる 揚力を失う速度を考慮する
-                    m_Rigidbody.rotation = Quaternion.Slerp(m_Rigidbody.rotation,
-                                                          Quaternion.LookRotation(m_Rigidbody.velocity, transform.up),
-                                                          m_AerodynamicEffect * Time.deltaTime);
+                    rigidbodyFighter.rotation = Quaternion.Slerp(rigidbodyFighter.rotation,
+                                                          Quaternion.LookRotation(rigidbodyFighter.velocity, transform.up),
+                                                          aeroDynamicEffect * Time.deltaTime);
                 }
             }
         }
@@ -241,17 +238,18 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             // この変数に力を与えていく
             var forces = Vector3.zero;
             // 前進方向にエンジンの力
-            forces += EnginePower * transform.forward;
-            //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求めて正規化する。
-            var liftDirection = Vector3.Cross(m_Rigidbody.velocity, transform.right).normalized;
+            forces += enginePower * transform.forward;
+            //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求める
+            //  必要なのは向き成分であり、外積の値は必要以上に大きくなりがちなので、正規化してしまう。
+            var liftDirection = Vector3.Cross(rigidbodyFighter.velocity, transform.right).normalized;
             // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
             //フラップを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
-            var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, ForwardSpeed);
+            var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, forwardSpeed);
             //揚力を計算し、加える。
-            var liftPower = ForwardSpeed * ForwardSpeed * liftFighter * zeroLiftFactor * m_AeroFactor;
+            var liftPower = forwardSpeed * forwardSpeed * liftFighter * zeroLiftFactor * aeroFactor;
             forces += liftPower * liftDirection;
             //計算した力を加える。
-            m_Rigidbody.AddForce(forces);
+            rigidbodyFighter.AddForce(forces);
         }
 
 
@@ -260,17 +258,17 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //変数にトルクの力を代入する
             var torque = Vector3.zero;
             //ピッチの入力に基づいた、トルクを代入する
-            torque += PitchInput * m_PitchEffect * transform.right;
+            torque += pitchInput * pitchEffect * transform.right;
             // ヨー
-            torque += YawInput * m_YawEffect * transform.up;
+            torque += yawInput * yawEffect * transform.up;
             // ロール
-            torque += -RollInput * m_RollEffect * transform.forward;
+            torque += -rollInput * rollEffect * transform.forward;
             // バンクターン
-            torque += m_BankedTurnAmount * m_BankedTurnEffect * transform.up;
+            torque += bankedTurnAmount * bankedTurnEffect * transform.up;
             //合計トルクに前進速度が乗算されるため、コントロールは高速でより効果があり、
             //低速で、または飛行機の機首の方向に移動していない場合はほとんど効果がありません
             //ストール中は落下する
-            m_Rigidbody.AddTorque(torque * ForwardSpeed * m_AeroFactor);
+            rigidbodyFighter.AddTorque(torque * forwardSpeed * aeroFactor);
         }
 
 
@@ -280,7 +278,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //飛行機自身のコライダーに衝突する可能性があるので、大体10ぐらい下から始める
             var ray = new Ray(transform.position - Vector3.up * 10, -Vector3.up);
             RaycastHit hit;
-            Altitude = Physics.Raycast(ray, out hit) ? hit.distance + 10 : transform.position.y;
+            altitude = Physics.Raycast(ray, out hit) ? hit.distance + 10 : transform.position.y;
             //地面があれば、それを10足したものが高度になる なかったら現状のY軸の位置をそのまま高度にする
         }
 
@@ -289,32 +287,32 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         //敵の戦闘機とかに使えばそれっぽく墜落するので嬉しいかも
         public void Immobilize()
         {
-            m_Immobilized = true;
+            immobilizedFighter = true;
         }
 
         // ObjectResetter scriptを使って、これを呼び出す。
         public void Reset()
         {
-            m_Immobilized = false;
+            immobilizedFighter = false;
         }
 
         //主に入力による挙動制御のための関数 将来的に様々な挙動の考慮したいから、こんな感じの実装
         //WIP スマートじゃないので書き直す
-        public void SetFighterStatus(bool isAutoPilot, bool isPitchup)
+        public void SetFighterStatus(bool isAutoPilotControll, bool isPitchupControll)
         {
-            SetAutoPilot(isAutoPilot);
+            SetAutoPilot(isAutoPilotControll);
 
-            SetPitchupStatus(isPitchup);
+            SetPitchupStatus(isPitchupControll);
         }
 
-        private void SetAutoPilot(bool isAutoPilot)
+        private void SetAutoPilot(bool isAutoPilotControll)
         {
-            IsAutoPilot = isAutoPilot;
+            isAutoPilot = isAutoPilotControll;
         }
 
-        private void SetPitchupStatus(bool isPitchup)
+        private void SetPitchupStatus(bool isPitchupControll)
         {
-            IsPitchup = isPitchup;
+            isPitchup = isPitchupControll;
         }
     }
 }

@@ -18,7 +18,7 @@ public class Altitude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ALT = PlayerController.Altitude;
+        ALT = PlayerController.altitude;
         ALTText.text = ALT.ToString();
     }
 }

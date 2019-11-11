@@ -51,23 +51,23 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             // TODO いつか改善したい
             if (yaw1 < 0 && yaw2 < 0)
             {
-                m_Fighter.Move(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, 0, throttle, airBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw1 >= 0 && yaw2 < 0)
             {
-                m_Fighter.Move(roll, pitch, -yaw1, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, -yaw1, throttle, airBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw2 >= 0 && yaw1 < 0)
             {
-                m_Fighter.Move(roll, pitch, yaw2, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, yaw2, throttle, airBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
             if (yaw1 >= 0 && yaw2 >= 0)
             {
                 isAutoPilot = true; 
-                m_Fighter.Move(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, 0, throttle, airBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
 
