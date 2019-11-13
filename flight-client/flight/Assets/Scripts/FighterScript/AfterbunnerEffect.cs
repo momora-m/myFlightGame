@@ -37,9 +37,9 @@ namespace Fighter
         {
             ParticleSystem.MainModule mainModule = m_System.main;
             // update the particle system based on the jets throttle
-            mainModule.startLifetime = Mathf.Lerp(0.0f, m_OriginalLifetime, m_Jet.Throttle);
-            mainModule.startSize = Mathf.Lerp(m_OriginalStartSize * .3f, m_OriginalStartSize, m_Jet.Throttle);
-            mainModule.startColor = Color.Lerp(minColour, m_OriginalStartColor, m_Jet.Throttle);
+            mainModule.startLifetime = Mathf.Lerp(0.0f, m_OriginalLifetime, m_Jet.throttle);
+            mainModule.startSize = Mathf.Lerp(m_OriginalStartSize * .3f, m_OriginalStartSize, m_Jet.throttle);
+            mainModule.startColor = Color.Lerp(minColour, m_OriginalStartColor, m_Jet.throttle);
         }
 
 
