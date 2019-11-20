@@ -14,6 +14,8 @@ namespace PlayerCamera {
         private Vector3 currentPlayerPos;
         private Vector3 backVector;
         private Vector3 targetPos;
+        private Vector2 angularPlayer;
+        private Vector3 sphericalPosition;
 
         private bool isFirst = false;
 
@@ -40,7 +42,18 @@ namespace PlayerCamera {
             targetPos,
             cameraSpeed * Time.deltaTime
             );
-        
+        }
+
+        private Vector3 calcurateSphericalPostion (float length,Vector2 angular) {
+            Vector3 sphericalPosition;
+            sphericalPosition.x = length*Mathf.Sin(angular.y * Mathf.PI) * Mathf.Cos(angular.y * Mathf.PI);
+            sphericalPosition.z = length*Mathf.Sin(angular.y * Mathf.PI) * Mathf.Sin(angular.y * Mathf.PI);
+            sphericalPosition.y = length*Mathf.Cos(angular.y * Mathf.PI);
+            return sphericalPosition;
+        }
+
+        private float calcurateLength(Vector3 camPos) {
+            return Mathf.Sqrt(camPos.x*camPos.x+camPos.y+camPos.y+camPos.z*camPos.z);
         }
     }
 }

@@ -241,6 +241,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             forces += enginePower * transform.forward;
             //  揚力を、飛行機の速度に対して垂直に発生させる 通常、前進時の加速度と、物体に対するX軸の方向は垂直なので、外積を求める
             //  必要なのは向き成分であり、外積の値は必要以上に大きくなりがちなので、正規化してしまう。
+            
             var liftDirection = Vector3.Cross(rigidbodyFighter.velocity, transform.right).normalized;
             // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
             //フラップを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする

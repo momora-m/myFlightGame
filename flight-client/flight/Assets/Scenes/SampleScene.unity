@@ -6147,6 +6147,7 @@ GameObject:
   - component: {fileID: 1066086692}
   - component: {fileID: 1066086694}
   - component: {fileID: 1066086695}
+  - component: {fileID: 1066086696}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -6262,7 +6263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dd1faaf5d065d43a4e0b0be3fe0dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_target: {fileID: 0}
+  m_target: {fileID: 349329939}
   m_speed: 0
 --- !u!114 &1066086695
 MonoBehaviour:
@@ -6271,7 +6272,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066086687}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8725e9a523cbe9a469d9ff05e9d5a27b, type: 3}
   m_Name: 
@@ -6279,6 +6280,21 @@ MonoBehaviour:
   rotateSpeed: 5
   player: {fileID: 8992205117702577228}
   timeOut: 0
+--- !u!114 &1066086696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066086687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f295839f1503c40b56897f23c7a8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8992205117702577228}
+  cameraSpeed: 100
+  spinSpeed: 1
 --- !u!1 &1069509729
 GameObject:
   m_ObjectHideFlags: 0
@@ -12365,6 +12381,10 @@ PrefabInstance:
     - {fileID: 8992205117839842393, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
     - {fileID: 8992205117319159098, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
     - {fileID: 8992205117853276245, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
+    - {fileID: 8992205117915579999, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
+    - {fileID: 8992205117915579987, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
+    - {fileID: 8992205117915579996, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
+    - {fileID: 8992205117915579998, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
 --- !u!1 &8992205117702577228 stripped
 GameObject:
@@ -12384,21 +12404,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686cf194c7a81fc4bad8ef68a916a40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxEnginePower: 40
-  m_Lift: 0.002
-  m_ZeroLiftSpeed: 300
-  m_StoleSpeed: 60
-  m_RollEffect: 1
-  m_PitchEffect: 0.5
-  m_YawEffect: 0.2
-  m_BankedTurnEffect: 0.5
-  m_AerodynamicEffect: 0.02
-  m_AutoTurnPitch: 0.5
-  m_AutoRollLevel: 0.2
-  m_AutoPitchLevel: 0.2
-  m_AirBrakesEffect: 3
-  m_ThrottleChangeSpeed: 0.3
-  m_DragIncreaseFactor: 0.001
+  maxEnginePowerThrottle: 40
+  liftFighter: 0.002
+  zeroLiftSpeed: 300
+  stoleSpeed: 60
+  rollEffect: 1
+  pitchEffect: 0.5
+  yawEffect: 0.05
+  bankedTurnEffect: 0.5
+  aeroDynamicEffect: 0.02
+  autoTurnPitch: 0.5
+  autoRollLevel: 0.2
+  autoPitchLevel: 0.2
+  airBrakesEffect: 3
+  throttleChangeSpeed: 0.3
+  dragIncreaseFactor: 0.001
 --- !u!114 &8992205117702577230
 MonoBehaviour:
   m_ObjectHideFlags: 0
