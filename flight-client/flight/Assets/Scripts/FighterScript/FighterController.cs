@@ -248,7 +248,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, forwardSpeed);
             //揚力を計算し、加える。
             float liftConstantValue = wingSurface * constantLift * airDensity;
-            float liftPower = forwardSpeed * forwardSpeed * liftFighter * zeroLiftFactor * aeroFactor;
+            float liftPower = forwardSpeed * forwardSpeed * liftConstantValue * zeroLiftFactor * aeroFactor;
             forces += liftPower * liftDirection;
             //計算した力を加える。
             rigidbodyFighter.AddForce(forces);
@@ -258,11 +258,13 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         private void CalculateTorque()//エンジン動力に抗するトルクを考慮する このトルクこそが航空機の本質である。
         {
             //変数にトルクの力を代入する
-            var torque = Vector3.zero;
+            Vector3 torque = Vector3.zero;
             //ピッチの入力に基づいた、トルクを代入する
             torque += pitchInput * pitchEffect * transform.right;
             // ヨー
             torque += yawInput * yawEffect * transform.up;
+            Debug.Log(yawInput);
+            Debug.Log(yawInput * yawEffect * transform.up);
             // ロール
             torque += -rollInput * rollEffect * transform.forward;
             // バンクターン

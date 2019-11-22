@@ -11942,7 +11942,7 @@ MonoBehaviour:
   stoleSpeed: 60
   rollEffect: 1
   pitchEffect: 0.5
-  yawEffect: 0.05
+  yawEffect: 0.5
   bankedTurnEffect: 0.5
   aeroDynamicEffect: 0.02
   autoTurnPitch: 0.5
