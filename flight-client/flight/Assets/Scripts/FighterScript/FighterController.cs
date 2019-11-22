@@ -212,10 +212,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
                     // multipled by itself results in a desirable rolloff curve of the effect
                     //乗算することで、空力の効果を高める
                     aeroFactor *= aeroFactor;
-                    // Finally we calculate a new velocity by bending the current velocity direction towards
                     // 最後に、現在の速度方向を曲げて新しい速度を計算します
-                    // the the direction the plane is facing, by an amount based on this aeroFactor
-                    // このaeroFactorに基づく量による、飛行機が向いている方向
+                    // このaeroFactorに基づく量による、飛行機が向いている方向に速度計算を行う+
                     var newVelocity = Vector3.Lerp(rigidbodyFighter.velocity, transform.forward * forwardSpeed,
                                                    aeroFactor * forwardSpeed * aeroDynamicEffect * Time.deltaTime);
                     rigidbodyFighter.velocity = newVelocity;
@@ -223,7 +221,6 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
 
                     // also rotate the plane towards the direction of moveFighterment - this should be a very small effect, but means the plane ends up
                     // 向いている方向に向けて、飛行機を移動させる
-                    // pointing downwards in a stall
                     // ストールしているときは、下向きの力になる 揚力を失う速度を考慮する
                     rigidbodyFighter.rotation = Quaternion.Slerp(rigidbodyFighter.rotation,
                                                           Quaternion.LookRotation(rigidbodyFighter.velocity, transform.up),
@@ -248,7 +245,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //フラップの上げ下げを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
             var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, forwardSpeed);
             //揚力を計算し、加える。
-            var liftPower = forwardSpeed * forwardSpeed * liftFighter * airDensity * zeroLiftFactor * aeroFactor;
+            var liftPower = forwardSpeed * forwardSpeed * /*liftFighter*/ 0.5f * airDensity * zeroLiftFactor * aeroFactor;
             forces += liftPower * liftDirection;
             //計算した力を加える。
             rigidbodyFighter.AddForce(forces);
