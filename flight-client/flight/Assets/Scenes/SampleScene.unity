@@ -6115,8 +6115,8 @@ MonoBehaviour:
   minPolarAngle: -90
   maxPolarAngle: 90
   horizontalSensitivity: 5
-  verticalSensitivity: 5
-  distance: 10
+  verticalSensitivity: 505
+  distance: 100
 --- !u!1 &1069509729
 GameObject:
   m_ObjectHideFlags: 0
@@ -11951,6 +11951,9 @@ MonoBehaviour:
   airBrakesEffect: 3
   throttleChangeSpeed: 0.3
   dragIncreaseFactor: 0.001
+  airDensity: 0.01
+  constantLift: 0.5
+  wingSurface: 0.5
 --- !u!114 &8992205117702577230
 MonoBehaviour:
   m_ObjectHideFlags: 0

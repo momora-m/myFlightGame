@@ -9,7 +9,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
     public class FighterController : MonoBehaviour
     {
         [SerializeField] private float maxEnginePowerThrottle = 40f;        // エンジンの最大出力
-        [SerializeField] private float liftFighter = 0.002f;               // 前方に移動する飛行機が生み出す揚力
+        [SerializeField] private float liftFighter = 0.0025f;               // 前方に移動する飛行機生み出す揚力
         [SerializeField] private float zeroLiftSpeed = 300;         // 揚力が適用されなくなる速度
         [SerializeField] private float stoleSpeed = 60;             // ストールが開始される速度
         [SerializeField] private float rollEffect = 1f;             // ロールの入力に対してどれだけの効果を与えるか
@@ -21,9 +21,11 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         [SerializeField] private float autoRollLevel = 0.2f;        // ロールを行っていないとき、飛行機がどれくらい水平になろうとするか
         [SerializeField] private float autoPitchLevel = 0.2f;       // ピッチを行っていないとき、飛行機がどれくらい水平になろうとするか
         [SerializeField] private float airBrakesEffect = 3f;        // エアブレーキがどれだけの抗力を生み出すか
-        [SerializeField] private float throttleChangeSpeed = 0.3f;  // スロットルが変化する速度
-        [SerializeField] private float dragIncreaseFactor = 0.001f;// 速度に応じてどれぐらい抗力が上昇するか
-        [SerializeField] private float airDensity = 1.0f;//大気中の空気密度
+        [SerializeField] private float throttleChangeSpeed = 0.3f;   // スロットルが変化する速度
+        [SerializeField] private float dragIncreaseFactor = 0.001f;  // 速度に応じてどれぐらい抗力が上昇するか
+        [SerializeField] private float airDensity = 0.01f;　　     　//大気中の空気密度
+        [SerializeField] private float constantLift = 0.5f;         //揚力計算の係数である1/2
+        [SerializeField] private float wingSurface = 0.5f; 　　　　　//翼の面積
         //ここまでの値は、インスペクターで編集していじれる様にする
 
 
@@ -245,7 +247,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //フラップの上げ下げを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
             var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, forwardSpeed);
             //揚力を計算し、加える。
-            var liftPower = forwardSpeed * forwardSpeed * /*liftFighter*/ 0.5f * airDensity * zeroLiftFactor * aeroFactor;
+            float liftConstantValue = wingSurface * constantLift * airDensity;
+            float liftPower = forwardSpeed * forwardSpeed * liftFighter * zeroLiftFactor * aeroFactor;
             forces += liftPower * liftDirection;
             //計算した力を加える。
             rigidbodyFighter.AddForce(forces);
