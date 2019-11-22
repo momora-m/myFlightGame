@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SphericalSystems {
+public static class SphericalSystem  {
     public static Vector2 calcurateSphericalAngle(Quaternion quat, Vector3 dis) {//球面座標系における極角と方位角を求める。
         Vector3 anglePoint = quat * dis;//座標に対してどれくらい回転しているか、つまり回転を考慮した値を、Vector3で返す
         float radius = Mathf.Sqrt(anglePoint.x * anglePoint.x + anglePoint.y * anglePoint.y + anglePoint.z * anglePoint.z);
         float lengthXY = Mathf.Sqrt(anglePoint.x * anglePoint.x + anglePoint.y + anglePoint.y);//方位角計算のために、XY成分を求める
-        float polarAngle = Mathf.Acos(anglePoint.y / radius);
+        float polarAngle = Mathf.Acos(anglePoint.y);
         float azimuthAngle = Mathf.Atan(anglePoint.x / anglePoint.y);
         Vector2 sphericalAngle;
         sphericalAngle.x = polarAngle;

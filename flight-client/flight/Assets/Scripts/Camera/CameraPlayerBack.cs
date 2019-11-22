@@ -5,7 +5,7 @@ namespace PlayerCamera {
     public class CameraPlayerBack : MonoBehaviour
     {
 
-        [SerializeField] public GameObject player;
+        public GameObject player;
         [SerializeField] public float scale = 3.0f;
         [SerializeField] public float cameraSpeed = 100f;
         [SerializeField] public float rotateSpeed = 50f;
@@ -36,12 +36,12 @@ namespace PlayerCamera {
             targetPos = currentPlayerPos + scale * posVector;
             targetPos.y = targetPos.y + 1f;
             transform.LookAt(player.transform.position);
-            prevPlayerPos = player.transform.position;
             transform.position = Vector3.Lerp(//線形補間を行うことでプレイヤーが酔わないようなカメラ移動にする
             transform.position,
             targetPos,
             cameraSpeed * Time.deltaTime
             );
+            prevPlayerPos = player.transform.position;
         }
 
         private Vector3 calcurateSphericalPostion (float length,Vector2 angular) {

@@ -23,6 +23,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         [SerializeField] private float airBrakesEffect = 3f;        // エアブレーキがどれだけの抗力を生み出すか
         [SerializeField] private float throttleChangeSpeed = 0.3f;  // スロットルが変化する速度
         [SerializeField] private float dragIncreaseFactor = 0.001f;// 速度に応じてどれぐらい抗力が上昇するか
+        [SerializeField] private float airDensity = 1.0f;//大気中の空気密度
         //ここまでの値は、インスペクターで編集していじれる様にする
 
 
@@ -112,7 +113,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //ロール、およびピッチの角度を計算する
             //水平な前に進もうとする力を計算する(y軸の方向性は考慮しない)
             // Calculate the flat forward direction (with no y component).
-            var flatForward = transform.forward;
+            Vector3 flatForward = transform.forward;
             flatForward.y = 0;
             // If the flat forward vector is non-zero (which would only happen if the plane was pointing exactly straight upwards)
             //平坦な前方ベクトルがゼロ以外の場合（平面が正確に真上を向いている場合にのみ発生します）
@@ -243,11 +244,11 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //  必要なのは向き成分であり、外積の値は必要以上に大きくなりがちなので、正規化してしまう。
             
             var liftDirection = Vector3.Cross(rigidbodyFighter.velocity, transform.right).normalized;
-            // 飛行機の速度が上がると、揚力が低下する (パイロットがフラップをひっこめたときに発生する)
-            //フラップを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
+            // 航空機は離陸すると、フラップを上げて揚力を必要以上に大きくしないようにする
+            //フラップの上げ下げを考慮しないため、離陸後に抗力が減ると同時に、揚力も減るようにする
             var zeroLiftFactor = Mathf.InverseLerp(zeroLiftSpeed, 0, forwardSpeed);
             //揚力を計算し、加える。
-            var liftPower = forwardSpeed * forwardSpeed * liftFighter * zeroLiftFactor * aeroFactor;
+            var liftPower = forwardSpeed * forwardSpeed * liftFighter * airDensity * zeroLiftFactor * aeroFactor;
             forces += liftPower * liftDirection;
             //計算した力を加える。
             rigidbodyFighter.AddForce(forces);
