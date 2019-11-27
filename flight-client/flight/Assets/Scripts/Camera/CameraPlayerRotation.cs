@@ -26,28 +26,33 @@ public class CameraPlayerRotation : MonoBehaviour
     {
         prevPlayerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));
         playerOffset = new Vector3(0, 0, -5);
+        sphericalAngleCamera = new Vector2(0,0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        if(CrossPlatformInputManager.GetButtonDown("Cancel") == false) {
-            playerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));//プレイヤーが向いている向きをXYZ成分に分解して正規化
-            Quaternion rotationCamera = Quaternion.LookRotation(playerForward);//機体の向いている方向と同じ向きにカメラを動かす
-            transform.rotation = Quaternion.Slerp(//カメラをキャラクターの向いている方向になめらかに動かす
-                transform.rotation,
-                rotationCamera,
-                rotateSpeed * Time.deltaTime
-            );
+        if(CrossPlatformInputManager.GetButton("Cancel") == false) {
+            //playerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));//プレイヤーが向いている向きをXYZ成分に分解して正規化
+            //Quaternion rotationCamera = Quaternion.LookRotation(playerForward);//機体の向いている方向と同じ向きにカメラを動かす
+            //transform.rotation = Quaternion.Slerp(//カメラをキャラクターの向いている方向になめらかに動かす
+                //transform.rotation,
+                //rotationCamera,
+                //rotateSpeed * Time.deltaTime
+            //);
+            sphericalAngleCamera = new Vector2(0,0);
+            transform.position = updatePosition(player.transform.position,sphericalAngleCamera);               
         }
         prevPlayerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));
-        if(CrossPlatformInputManager.GetButtonDown("Cancel")) {
+        if(CrossPlatformInputManager.GetButton("Cancel")) {
             sphericalAngleCamera = updateAngle(CrossPlatformInputManager.GetAxis("HorizontalRight"),  
                                                 CrossPlatformInputManager.GetAxis("VerticalRight"),
                                                 sphericalAngleCamera);
             transform.position = updatePosition(player.transform.position,sphericalAngleCamera);          
         }
+        Debug.Log(sphericalAngleCamera);
+        Debug.Log(transform.position);
     }
 
     private Vector2 updateAngle(float x, float y,Vector2 sphericalAngle)

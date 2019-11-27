@@ -44,8 +44,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         public bool isAutoPilot { get; private set; }                     //オートパイロット状態か否か
         public bool isPitchup { get; private set; }
 
-        private float originalDrag;         // シーンが開始された時のDrag(RigidBody)
-        private float originalAngularDrag;  // シーンが開始された時のAngularDrag(RigidBody)
+        private float originalDrag;         // 開始時点での空気抵抗
+        private float originalAngularDrag;  // 開始時点での回転の抵抗
         private float aeroFactor;
         private bool immobilizedFighter = false;   //飛行機が制御不能(immobilized)になったとき使用
         private float bankedTurnAmount;
@@ -110,25 +110,21 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         }
 
 
-        private void CalculateRollAndPitchAngles()
+        private void CalculateRollAndPitchAngles()//ロールとピッチの角度計算を行う
         {
-            //ロール、およびピッチの角度を計算する
-            //水平な前に進もうとする力を計算する(y軸の方向性は考慮しない)
-            // Calculate the flat forward direction (with no y component).
             Vector3 flatForward = transform.forward;
             flatForward.y = 0;
-            // If the flat forward vector is non-zero (which would only happen if the plane was pointing exactly straight upwards)
-            //平坦な前方ベクトルがゼロ以外の場合（平面が正確に真上を向いている場合にのみ発生します）
+            //前方ベクトルゼロ以外のとき
             if (flatForward.sqrMagnitude > 0)
             {
                 flatForward.Normalize();//ベクトルを正規化する
                 // ピッチの角度を計算
-                var localFlatForward = transform.InverseTransformDirection(flatForward);//ワールド座標からローカル座標への変換
-                pitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//localFlatForward.zを中心として、localFlatForward.yが何度の位置にあるか。
+                Vector3 localFlatForward = transform.InverseTransformDirection(flatForward);//ワールド座標からローカル座標への変換
+                pitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//ローカル座標を用いて仰角を計算する
                 // ロールの角度を計算
-                var flatRight = Vector3.Cross(Vector3.up, flatForward);//外積を求めることで、右の角度か左の角度かを判断する
-                var localFlatRight = transform.InverseTransformDirection(flatRight);
-                rollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);
+                Vector3 flatRight = Vector3.Cross(Vector3.up, flatForward);//外積を求めることで、右の角度か左の角度かを判断する
+                Vector3 localFlatRight = transform.InverseTransformDirection(flatRight);//ワールド座標からローカル座標への変換
+                rollAngle = Mathf.Atan2(localFlatRight.y, localFlatRight.x);//ローカル座標を用いて方位角を計算する
             }
         }
 
@@ -138,10 +134,8 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //エスコン的操作のために、オートパイロット有効時に表示する。
             if (isAutoPilot == true)
             {
-                // The banked turn amount (between -1 and 1) is the sine of the roll angle.
                 //-1から1の間で定義されるバンクターンの量は、ロールの角度の正弦(傾いてできた角度との正弦)
                 //http://www.cfijapan.com/study/html/to199/html-to175/151a-turning.htm 参照
-                // this is an amount applied to elevator input if the user is only using the banking controls,
                 //これは、プレイヤーがバンキングコントロールのみを使用している場合に段階的な入力に適用される量
 
                 // because that's what people expect to happen in games!
@@ -207,7 +201,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
                 // 空力計算を行う。これは、翼が生み出す翼平面の効果の非常に単純な近似です
                 //速度で移動するときに、自然と向き合う方向に自動的に整列しようとします。
                 //これをピッチアップ中は動作させないことで、現実ではありえないようなインメルマンターンを可能にする。
-                if (rigidbodyFighter.velocity.magnitude > 0)
+                if (rigidbodyFighter.velocity.magnitude > 0)//加速度がzeroより大きい時
                 {
                     // 向いている方向と移動している方向(加速度から算出)を比較します。
                     aeroFactor = Vector3.Dot(transform.forward, rigidbodyFighter.velocity.normalized);
@@ -263,8 +257,6 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             torque += pitchInput * pitchEffect * transform.right;
             // ヨー
             torque += yawInput * yawEffect * transform.up;
-            Debug.Log(yawInput);
-            Debug.Log(yawInput * yawEffect * transform.up);
             // ロール
             torque += -rollInput * rollEffect * transform.forward;
             // バンクターン
