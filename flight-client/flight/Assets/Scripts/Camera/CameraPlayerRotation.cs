@@ -7,7 +7,7 @@ public class CameraPlayerRotation : MonoBehaviour
     [SerializeField] public float rotateSpeed = 50f;
     [SerializeField] public GameObject player;
     [SerializeField]public float timeOut;
-    [SerializeField] private float minPolarAngle = -90.0f;
+    [SerializeField] private float minPolarAngle = 0;
     [SerializeField] private float maxPolarAngle = 90.0f;
     [SerializeField] private float horizontalSensitivity = 5.0f;
     [SerializeField] private float verticalSensitivity = 5.0f;
@@ -26,44 +26,38 @@ public class CameraPlayerRotation : MonoBehaviour
     {
         prevPlayerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));
         playerOffset = new Vector3(0, 0, -5);
-        sphericalAngleCamera = new Vector2(0,0);
+        sphericalAngleCamera = new Vector2(90,-90);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        if(CrossPlatformInputManager.GetButton("Cancel") == false) {
-            //playerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));//プレイヤーが向いている向きをXYZ成分に分解して正規化
-            //Quaternion rotationCamera = Quaternion.LookRotation(playerForward);//機体の向いている方向と同じ向きにカメラを動かす
-            //transform.rotation = Quaternion.Slerp(//カメラをキャラクターの向いている方向になめらかに動かす
-                //transform.rotation,
-                //rotationCamera,
-                //rotateSpeed * Time.deltaTime
-            //);
-            sphericalAngleCamera = new Vector2(0,0);
-            transform.position = updatePosition(player.transform.position,sphericalAngleCamera);               
+        float roll = CrossPlatformInputManager.GetAxis("Horizontal");
+        float pitch = CrossPlatformInputManager.GetAxis("Vertical"); 
+        if(CrossPlatformInputManager.GetAxis("HorizontalRight") == 0 && CrossPlatformInputManager.GetAxis("VerticalRight") == 0) {
+            sphericalAngleCamera = new Vector2(90,-90);
         }
-        prevPlayerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));
-        if(CrossPlatformInputManager.GetButton("Cancel")) {
-            sphericalAngleCamera = updateAngle(CrossPlatformInputManager.GetAxis("HorizontalRight"),  
-                                                CrossPlatformInputManager.GetAxis("VerticalRight"),
-                                                sphericalAngleCamera);
-            transform.position = updatePosition(player.transform.position,sphericalAngleCamera);          
-        }
-        Debug.Log(sphericalAngleCamera);
-        Debug.Log(transform.position);
+        sphericalAngleCamera = updateAngle(CrossPlatformInputManager.GetAxis("HorizontalRight"),  
+                                            CrossPlatformInputManager.GetAxis("VerticalRight"),
+                                            sphericalAngleCamera);
+        transform.position = updatePosition(player.transform.position,sphericalAngleCamera);          
+        transform.LookAt(player.transform.position);
+        Debug.Log(CrossPlatformInputManager.GetAxis("HorizontalRight"));
+        Debug.Log(CrossPlatformInputManager.GetAxis("VerticalRight"));
     }
 
     private Vector2 updateAngle(float x, float y,Vector2 sphericalAngle)
     {
         Vector2 angle;
         x = sphericalAngle.x - x * horizontalSensitivity;
-        angle.x = Mathf.Repeat(x, 360);
+        angle.x = Mathf.Clamp(x, 0, 180);
 
         y = sphericalAngle.y + y * verticalSensitivity;
-        angle.y = Mathf.Clamp(y, -90, 90);
+        angle.y = Mathf.Clamp(y, -180, 0);
         return angle;
+    }
+
+    private void calcuratePlayerRotation(){
     }
     private Vector3 updatePosition(Vector3 lookAtPos ,Vector2 sphericalAngle)
     {

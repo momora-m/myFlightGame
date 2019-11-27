@@ -5994,8 +5994,6 @@ GameObject:
   - component: {fileID: 1066086693}
   - component: {fileID: 1066086692}
   - component: {fileID: 1066086695}
-  - component: {fileID: 1066086694}
-  - component: {fileID: 1066086696}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -6099,22 +6097,6 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066086687}
   m_Enabled: 1
---- !u!54 &1066086694
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066086687}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1066086695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6122,7 +6104,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066086687}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8725e9a523cbe9a469d9ff05e9d5a27b, type: 3}
   m_Name: 
@@ -6133,22 +6115,8 @@ MonoBehaviour:
   minPolarAngle: -90
   maxPolarAngle: 90
   horizontalSensitivity: 5
-  verticalSensitivity: 505
-  distance: 100
---- !u!138 &1066086696
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066086687}
-  m_ConnectedBody: {fileID: 8992205117702577235}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  verticalSensitivity: 5
+  distance: 15
 --- !u!1 &1069509729
 GameObject:
   m_ObjectHideFlags: 0
@@ -12065,9 +12033,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minColour: {r: 0, g: 0, b: 0, a: 0}
---- !u!54 &8992205117702577235 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 8992205117915579997, guid: 26a2ce403ea13cb488a6be992ee5dffc,
-    type: 3}
-  m_PrefabInstance: {fileID: 8992205117702577227}
-  m_PrefabAsset: {fileID: 0}

@@ -249,7 +249,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
         }
 
 
-        private void CalculateTorque()//エンジン動力に抗するトルクを考慮する このトルクこそが航空機の本質である。
+        private void CalculateTorque()//エンジン動力に比例するトルクこそが航空機の本質である。
         {
             //変数にトルクの力を代入する
             Vector3 torque = Vector3.zero;
