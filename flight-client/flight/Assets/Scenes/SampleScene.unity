@@ -6008,7 +6008,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066086687}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0383d12208ae9f545b41dabee813f8a3, type: 3}
   m_Name: 
@@ -6075,7 +6075,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066086687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 8.9, z: -831.2}
+  m_LocalPosition: {x: -7, y: 2.7, z: -813.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6116,7 +6116,7 @@ MonoBehaviour:
   maxPolarAngle: 90
   horizontalSensitivity: 5
   verticalSensitivity: 5
-  distance: 10
+  distance: 15
 --- !u!1 &1069509729
 GameObject:
   m_ObjectHideFlags: 0
@@ -11770,7 +11770,7 @@ PrefabInstance:
     - target: {fileID: 8992205117915579992, guid: 26a2ce403ea13cb488a6be992ee5dffc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.7
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8992205117915579992, guid: 26a2ce403ea13cb488a6be992ee5dffc,
         type: 3}
@@ -11908,6 +11908,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8992205116496257279, guid: 26a2ce403ea13cb488a6be992ee5dffc,
+        type: 3}
+      propertyPath: m_Range
+      value: 8.301336
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8992205117743491509, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
     - {fileID: 8992205117839842393, guid: 26a2ce403ea13cb488a6be992ee5dffc, type: 3}
@@ -11942,7 +11947,7 @@ MonoBehaviour:
   stoleSpeed: 60
   rollEffect: 1
   pitchEffect: 0.5
-  yawEffect: 0.05
+  yawEffect: 0.5
   bankedTurnEffect: 0.5
   aeroDynamicEffect: 0.02
   autoTurnPitch: 0.5
@@ -11951,6 +11956,9 @@ MonoBehaviour:
   airBrakesEffect: 3
   throttleChangeSpeed: 0.3
   dragIncreaseFactor: 0.001
+  airDensity: 0.01
+  constantLift: 0.5
+  wingSurface: 0.5
 --- !u!114 &8992205117702577230
 MonoBehaviour:
   m_ObjectHideFlags: 0
