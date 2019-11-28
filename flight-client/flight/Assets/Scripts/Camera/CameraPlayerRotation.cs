@@ -17,7 +17,6 @@ public class CameraPlayerRotation : MonoBehaviour
     private Vector3 playerForward;
     private Vector3 prevPlayerForward;
     private Vector2 sphericalAngleCamera;
-    private Vector3 playerOffset;
 
 
     private float hoge;
@@ -25,7 +24,6 @@ public class CameraPlayerRotation : MonoBehaviour
     void Start()
     {
         prevPlayerForward = Vector3.Scale(player.transform.forward, new Vector3(10, 10, 10));
-        playerOffset = new Vector3(0, 0, -5);
         sphericalAngleCamera = new Vector2(90,-90);
     }
 
