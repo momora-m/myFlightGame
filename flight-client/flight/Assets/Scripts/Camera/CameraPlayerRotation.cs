@@ -25,6 +25,7 @@ public class CameraPlayerRotation : MonoBehaviour
     void Start()
     {
         sphericalAngleCamera = new Vector2(90,-90);
+        Debug.Log(transform.rotation);
     }
 
     // Update is called once per frame
@@ -37,10 +38,11 @@ public class CameraPlayerRotation : MonoBehaviour
         }
         sphericalAngleCamera = updateAngle(CrossPlatformInputManager.GetAxis("HorizontalRight"),  
                                             CrossPlatformInputManager.GetAxis("VerticalRight"),
-                                            sphericalAngleCamera);
-        Vector3 localplayerposition = transform.InverseTransformDirection(player.transform.position);
-        transform.position = updatePosition(transform.position,sphericalAngleCamera);         
-        transform.LookAt(transform.position);
+                                            sphericalAngleCamera);        
+        Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        transform.localPosition = updatePosition(player.transform.localPosition,sphericalAngleCamera);
+        transform.LookAt(target);
+        //transform.rotation = player.transform.rotation;
     }
 
     private Vector2 updateAngle(float x, float y,Vector2 sphericalAngle)
@@ -52,6 +54,12 @@ public class CameraPlayerRotation : MonoBehaviour
         y = sphericalAngle.y + y * verticalSensitivity;
         angle.y = Mathf.Clamp(y, -180, 0);
         return angle;
+    }
+
+    private void localLookAtPos(Vector3 pos, Vector3 targetPos) {
+        Vector3 z = (targetPos - transform.position).normalized;
+        Vector3 x = Vector3.Cross(Vector3.up, z).normalized;
+        Vector3 y = Vector3.Cross(z, x).normalized;
     }
     private void CalculateRollAndPitchAngles()//ロールとピッチの角度計算を行う
     {
@@ -73,14 +81,14 @@ public class CameraPlayerRotation : MonoBehaviour
 
     private void calcuratePlayerRotation(){
     }
-    private Vector3 updatePosition(Vector3 lookAtPos ,Vector2 sphericalAngle)
+    private Vector3 updatePosition(Vector3 targetPos, Vector2 sphericalAngle)
     {
         float polarAngle = sphericalAngle.x * Mathf.Deg2Rad;
         float azimuthAngle = sphericalAngle.y * Mathf.Deg2Rad;
         Vector3 worldposition = new Vector3(
-            lookAtPos.x + distance * Mathf.Sin(azimuthAngle) * Mathf.Cos(polarAngle),
-            lookAtPos.y + distance * Mathf.Cos(azimuthAngle),
-            lookAtPos.z + distance * Mathf.Sin(azimuthAngle) * Mathf.Sin(polarAngle)
+            targetPos.x + distance * Mathf.Sin(azimuthAngle) * Mathf.Cos(polarAngle),
+            targetPos.y + distance * Mathf.Cos(azimuthAngle),
+            targetPos.z + distance * Mathf.Sin(azimuthAngle) * Mathf.Sin(polarAngle)
         );
         return worldposition;
     }

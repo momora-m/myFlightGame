@@ -14,9 +14,11 @@ public class GetPlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.rotation = player.transform.rotation;
         Vector3 position = player.transform.position;
         position.z  = player.transform.position.z - 10;
         transform.position = position;
+        var aim = player.transform.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(aim);
+        transform.rotation = rotation; 
     }
 }
