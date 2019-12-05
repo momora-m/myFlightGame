@@ -23,51 +23,67 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
             //ロールピッチヨーとエンジンスロットルの入力をとる
             float roll = CrossPlatformInputManager.GetAxis("Horizontal");
             float pitch = CrossPlatformInputManager.GetAxis("Vertical");
-            float yaw1 = CrossPlatformInputManager.GetAxis("YawS1");
-            float yaw2 = CrossPlatformInputManager.GetAxis("YawS2");
+            bool yaw1 = CrossPlatformInputManager.GetButton("YawS1");
+            bool yaw2 = CrossPlatformInputManager.GetButton("YawS2");
             //bool airBrakes = CrossPlatformInputManager.GetButton("Fire1");
-            bool airEngines = CrossPlatformInputManager.GetButton("RightB");
-            bool airBrakes = CrossPlatformInputManager.GetButton("LeftB");
+            float airEngines = CrossPlatformInputManager.GetAxis("RightB");
+            float airBrakes = CrossPlatformInputManager.GetAxis("LeftB");
             // auto throttle up, or down if braking.
             float throttle = 0;
-
+            float rightYaw = 0;
+            float leftYaw = 0;
             bool isAutoPilot = false; // ヨーの左右同時入力時、オートパイロットをオンにする
             bool isPitchup = false; //ピッチアップしているときは、空力とか無視したい
+            bool isAirBrakes = false;
             if(pitch < 0) {
                 isPitchup = true;
             }
             //float throttle = airBrakes ? -1 : 1;
-            if (airEngines == true)
-            {
+            if(airEngines > 0) {
                 throttle = 1;
+                isAirBrakes = false;
             }
-            if (airBrakes == true)
-            {
+            else if(airBrakes > 0) {
                 throttle = -1;
+                isAirBrakes = true;
+            }
+
+            if(yaw1) {
+                rightYaw = 1;
+            }
+            else {
+                rightYaw = 0;
+            }
+
+            if(yaw2) {
+                leftYaw = 1;
+            }
+            else {
+                leftYaw = 0;
             }
 
             // Pass the input to the aeroplane
             //現状PS4コントローラにのみ対応!
             // TODO いつか改善したい
-            if (yaw1 < 0 && yaw2 < 0)
+            if (rightYaw == 0 && leftYaw == 0)
             {
-                m_Fighter.MoveFighter(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, 0, throttle, isAirBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
-            if (yaw1 >= 0 && yaw2 < 0)
+            if (rightYaw == 1 && leftYaw == 0)
             {
-                m_Fighter.MoveFighter(roll, pitch, -yaw1, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, rightYaw, throttle, isAirBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
-            if (yaw2 >= 0 && yaw1 < 0)
+            if (leftYaw == 1 && rightYaw == 0)
             {
-                m_Fighter.MoveFighter(roll, pitch, yaw2, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, -leftYaw, throttle, isAirBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
-            if (yaw1 >= 0 && yaw2 >= 0)
+            if (rightYaw == 1 && leftYaw == 1)
             {
                 isAutoPilot = true; 
-                m_Fighter.MoveFighter(roll, pitch, 0, throttle, airBrakes);
+                m_Fighter.MoveFighter(roll, pitch, 0, throttle, isAirBrakes);
                 m_Fighter.SetFighterStatus(isAutoPilot, isPitchup);
             }
 

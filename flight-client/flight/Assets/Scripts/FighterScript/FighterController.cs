@@ -120,7 +120,7 @@ namespace Fighter// 戦闘機周りはこの名前空間で統一
                 flatForward.Normalize();//ベクトルを正規化する
                 // ピッチの角度を計算
                 Vector3 localFlatForward = transform.InverseTransformDirection(flatForward);//ワールド座標からローカル座標への変換
-                pitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//ローカル座標を用いて仰角を計算する
+                pitchAngle = Mathf.Atan2(localFlatForward.y, localFlatForward.z);//ローカル座標を用いて迎え角を計算する
                 // ロールの角度を計算
                 Vector3 flatRight = Vector3.Cross(Vector3.up, flatForward);//外積を求めることで、右の角度か左の角度かを判断する
                 Vector3 localFlatRight = transform.InverseTransformDirection(flatRight);//ワールド座標からローカル座標への変換
